@@ -1,0 +1,58 @@
+.boton-transOver{
+    background-color: #020962 !important;
+    border-radius: .25rem;
+    box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12) !important;
+    position: fixed;
+    top: 50%;
+    transition: transform .3s ease;
+    z-index: 998;
+    right: 0;
+}
+
+.boton-transOver:hover{
+    background-image: linear-gradient(to right, #020962, #0208629a) !important;
+}
+
+.boton-trans{
+    background-image: linear-gradient(to right, #6abfa6, #70f7d0) !important;
+    border-radius: 2.25rem;
+    box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12) !important;
+    position: fixed;
+    top: 15%;
+    z-index: 998;
+    right: 0;
+    padding-top: 30px !important;
+}
+
+.boton-trans:hover{
+    background-image: linear-gradient(to right, #6abfa6, #70f7d0) !important;
+}
+
+.toggle-settings {
+    box-shadow: none;
+    border: none;
+    height: 3rem;
+    width: 3rem;
+    padding: 0;
+    text-align: center;
+}
+
+.subBoton{
+    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2) !important;
+    padding-bottom: 5px;
+    padding-bottom: 42px;
+    padding-left: 30px;
+    width: 119%;
+    margin-left: -21px;
+}
+
+@media only screen and (min-width: 100px) and (max-width: 603px) {
+    .boton-transOver{
+        margin-left: -28px;
+    }
+}
+
+.imagenMenu{
+    width: 24px;
+    margin-top: -4px;
+}

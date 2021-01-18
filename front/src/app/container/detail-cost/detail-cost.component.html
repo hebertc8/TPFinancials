@@ -1,0 +1,252 @@
+<!-- <nb-card class="row">
+    <nb-card-body class="p-0">
+    <img src="assets/Banner-05.png" alt="" class="stylePhoto">
+    </nb-card-body>
+</nb-card> -->
+
+<!-- <app-banner [name]="'Banner-05.png'"></app-banner> -->
+
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <nb-card>
+            <nb-card-header>
+                <div class="row">
+                    <div class="col-md-11 col-lg-6">
+                        Cost
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-6">
+                        <p style="font-size: 0.75rem; line-height: 2rem; color:#8f9bb3; margin-bottom: 0px;">
+                            Financials cost
+                        </p>
+                    </div>
+                </div>
+                <!-- <div class="row d-flex justify-content-center alinear">
+                    <div class="col-md-12 col-lg-4 mt-1">
+                        <nb-select id="marketInput" class="comboBox" size="tiny" [(ngModel)]="market"
+                            placeholder="Select All" (selectedChange)="filterSelected($event,1)">
+                            <nb-option [value]="null">Select All</nb-option>
+                            <nb-option *ngFor="let m of marketArray" [value]="m">{{m}}</nb-option>
+                        </nb-select>
+                    </div>
+                    <div class="col-md-12 col-lg-4 mt-1 alinear">
+                        <nb-select id="clientInput" class="comboBox" size="tiny" [(ngModel)]="client"
+                            placeholder="Select All" (selectedChange)="filterSelected($event,2)">
+                            <nb-option [value]="null">Select All</nb-option>
+                            <nb-option *ngFor="let c of clientArray" [value]="c">{{c}}</nb-option>
+                        </nb-select>
+                    </div>
+                    <div class="col-md-12 col-lg-4 mt-1 alinear">
+                        <nb-select id="campaignInput" class="comboBox" size="tiny" [(ngModel)]="campaign"
+                            placeholder="Select All" (selectedChange)="filterSelected($event,3)">
+                            <nb-option [value]="null">Select All</nb-option>
+                            <nb-option *ngFor="let c of campaignArray" [value]="c">{{c}}</nb-option>
+                        </nb-select>
+                    </div>
+                </div> -->
+            </nb-card-header>
+        </nb-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 col-lg-5">
+        <nb-card id="bar"  nbSpinnerStatus="primary" size="medium">
+            <nb-card-header style="padding-bottom: 24px;">
+                <div class="row">
+                    <div class="col-md-10 col-lg-6">
+                        CPH & RPH
+                    </div>
+                    <div class="col-md-1 col-lg-6">
+                        <button nbButton hero status="info" (click)="generateReport()" class=" positionBotonCPH flip-icon add-filter" shape="round"
+                        size="small"><nb-icon icon="message-square-outline" style="color: white;"></nb-icon>
+                        </button>
+                    </div>
+                </div>
+            </nb-card-header>
+            <nb-card-body>
+                <div nbSpinnerStatus="primary" [nbSpinner]="spinnerGraphic" nbSpinnerSize="large" *ngIf="this.themeActual" echarts
+                    [options]="optionsCphRph" class="echart mt-3">
+                </div>
+            </nb-card-body>
+        </nb-card>
+    </div>
+
+    <div class="col-md-6 col-lg-7 p-0">
+        <nb-card [nbSpinner]="spinnerTableRatios" nbSpinnerStatus="primary" size="medium">
+            <nb-card-header>
+                <div class="row">
+                    <div class="col-md-10 col-lg-6">
+                        INDICATORS
+                        <button nbButton ghost (click)="generateXlxs(1)" size="small">
+                            <nb-icon icon="download-outline"></nb-icon>
+                        </button>
+                    </div>
+                    <div class="col-md-1 col-lg-6">
+                        <button nbButton hero status="info" (click)="generateReport()" class=" positionBoton flip-icon add-filter" shape="round"
+                        size="small"><nb-icon icon="message-square-outline" style="color: white;"></nb-icon>
+                        </button>
+                    </div>
+                </div>
+            </nb-card-header>
+            <nb-card-body>
+                <table id="tablaIndi" class="table table-striped" scrollX="true">
+                    <thead>
+                        <tr>
+                            <th scope="col">INDICATOR</th>
+                            <th scope="col">ACTUAL</th>
+                            <th scope="col">OB</th>
+                            <th scope="col">RFT</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            *ngFor="let data of tableDataRatios | paginate : { id: 'Indice',itemsPerPage: 6, currentPage: e }">
+                            <th scope="row">{{ data.indicator }}</th>
+                            <td> {{ data.actual | number: '.2-2' }} </td>
+                            <td>
+                                <!-- <nb-icon
+                                    icon="{{data.ob > data.actual ? 'close-circle-outline' : data.ob == data.actual ? 'alert-circle-outline' : 'checkmark-circle-2-outline'}}"
+                                    status="{{data.ob > data.actual ? 'danger' : data.ob == data.actual ? 'warning' : 'success'}}">
+                                </nb-icon> -->
+                                {{ data.ob | number: '.2-2' }}
+                            </td>
+                            <td>
+                                <!-- <nb-icon
+                                    icon="{{data.rft > data.actual ? 'close-circle-outline' : data.rft == data.actual ? 'alert-circle-outline' : 'checkmark-circle-2-outline'}}"
+                                    status="{{data.rft > data.actual ? 'danger' : data.rft == data.actual ? 'warning' : 'success'}}">
+                                </nb-icon> -->
+                                {{ data.rft | number: '.2-2' }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="text-center">
+                    <pagination-controls id="Indice" (pageChange)="e = $event"></pagination-controls>
+                </div>
+            </nb-card-body>
+        </nb-card>
+    </div>
+</div>
+<!-- <nb-card class="row">
+    <nb-card-body class="p-0">
+    <img src="assets/Banner-02.png" alt="" class="stylePhoto">
+    </nb-card-body>
+</nb-card> -->
+<!-- <app-banner [name]="'Banner-02.png'"></app-banner> -->
+<div class="row ">
+    <div class="col-md-6 col-lg-12">
+        <nb-card [nbSpinner]="spinnerTableCost" nbSpinnerStatus="primary" id="cardOne">
+            <nb-card-header>
+                ACCOUNTING ACCOUNTS
+
+                <button nbButton ghost (click)="generateXlxs(3)" size="small">
+                    <nb-icon icon="download-outline"></nb-icon>
+                </button>
+            </nb-card-header>
+            <nb-card-body *ngIf="Listflipped">
+
+                <table [nbTreeGrid]="source" class="grid table-striped">
+                    <tr nbTreeGridHeaderRow *nbTreeGridHeaderRowDef="allColumns"></tr>
+                    <tr nbTreeGridRow *nbTreeGridRowDef="let row; columns: allColumns"></tr>
+
+                    <ng-container [nbTreeGridColumnDef]="customColumn">
+                        <th nbTreeGridHeaderCell *nbTreeGridHeaderCellDef>{{customColumn | uppercase}}</th>
+                        <td nbTreeGridCell *nbTreeGridCellDef="let row"
+                            [style]="row.data.indicator === 'Concept' ||  row.data.indicator === 'Cost Payroll' || row.data.indicator === 'Cost Other'? 'font-weight: bold;': ''">
+
+                            <nb-tree-grid-row-toggle [expanded]="row.expanded"
+                                *ngIf="row.data.indicator === 'Concept' ||
+                                            row.data.indicator === 'Cost Other' || row.data.indicator === 'Cost Payroll' ">
+                            </nb-tree-grid-row-toggle>
+
+                            {{row.data[customColumn] | uppercase}}
+
+                        </td>
+                    </ng-container>
+
+                    <ng-container *ngFor="let column of defaultColumns" [nbTreeGridColumnDef]="column">
+                        <th nbTreeGridHeaderCell *nbTreeGridHeaderCellDef>{{column | uppercase}}</th>
+                        <td nbTreeGridCell *nbTreeGridCellDef="let row">
+                            <nb-icon *ngIf="column === 'ob'"
+                                icon="{{row.data[column] < row.data['actual'] ? 'close-circle-outline' : row.data[column] == row.data['actual'] ? 'alert-circle-outline' : 'checkmark-circle-2-outline'}}"
+                                status="{{row.data[column] < row.data['actual'] ? 'danger' : row.data[column] < row.data['actual'] ? 'warning' : 'success'}}">
+                            </nb-icon>
+                            <nb-icon *ngIf="column === 'rft'"
+                                icon="{{row.data[column] < row.data['actual'] ? 'close-circle-outline' : row.data[column] == row.data['actual'] ? 'alert-circle-outline' : 'checkmark-circle-2-outline'}}"
+                                status="{{row.data[column] < row.data['actual'] ? 'danger' : row.data[column] < row.data['actual'] ? 'warning' : 'success'}}">
+                            </nb-icon>
+                            {{row.data[column] | number: '.2-2'}}
+                        </td>
+                    </ng-container>
+                </table>
+            </nb-card-body>
+            <nb-icon icon="arrowhead-down-outline" pack="eva" class="flip-icon positionIcon" (click)="toggleView()"
+            *ngIf="!Listflipped">
+            </nb-icon>
+            <nb-icon icon="arrowhead-up-outline" pack="eva" class="flip-icon positionIcon" (click)="toggleView()"
+                *ngIf="Listflipped">
+            </nb-icon>
+            <button nbButton hero status="info" (click)="generateReport()" class=" positionBotonAcc flip-icon add-filter" shape="round"
+            size="small"><nb-icon icon="message-square-outline" style="color: white;"></nb-icon>
+            </button>
+        </nb-card>
+    </div>
+    <div class="col-md-6 col-lg-12">
+        <nb-card [nbSpinner]="spinnerTablePosition" nbSpinnerStatus="primary" [size]="varSize" id="cardTow">
+            <nb-card-header>
+                POSITION
+                <button nbButton ghost (click)="generateXlxs(2)" size="small">
+                    <nb-icon icon="download-outline"></nb-icon>
+                </button>
+            </nb-card-header>
+            <nb-card-body *ngIf="ListflippedTow">
+                <table [nbTreeGrid]="sourcePosition" class="grid table-striped">
+                    <tr nbTreeGridHeaderRow *nbTreeGridHeaderRowDef="allColumns"></tr>
+                    <tr nbTreeGridRow *nbTreeGridRowDef="let row; columns: allColumns"></tr>
+
+                    <ng-container [nbTreeGridColumnDef]="customColumn">
+                        <th nbTreeGridHeaderCell *nbTreeGridHeaderCellDef>{{customColumn| uppercase}}</th>
+                        <td nbTreeGridCell *nbTreeGridCellDef="let row"
+                            [style]="row.data.indicator === 'Position' ? 'font-weight: bold;':''">
+
+                            <nb-tree-grid-row-toggle [expanded]="row.expanded"
+                                *ngIf="row.data.indicator === 'Position' " (click)="changeT()">
+                            </nb-tree-grid-row-toggle>
+
+                            {{row.data[customColumn]| uppercase}}
+
+                        </td>
+
+                    </ng-container>
+
+                    <ng-container *ngFor="let column of defaultColumns" [nbTreeGridColumnDef]="column">
+                        <th nbTreeGridHeaderCell *nbTreeGridHeaderCellDef>{{column | uppercase}}</th>
+                        <td nbTreeGridCell *nbTreeGridCellDef="let row">
+                            <!-- <nb-icon *ngIf="column === 'ob'"
+                                icon="{{row.data[column] > row.data['actual'] ? 'close-circle-outline' : row.data[column] == row.data['actual'] ? 'alert-circle-outline' : 'checkmark-circle-2-outline'}}"
+                                status="{{row.data[column] > row.data['actual'] ? 'danger' : row.data[column] > row.data['actual'] ? 'warning' : 'success'}}">
+                            </nb-icon>
+                            <nb-icon *ngIf="column === 'rft'"
+                                icon="{{row.data[column] > row.data['actual'] ? 'close-circle-outline' : row.data[column] == row.data['actual'] ? 'alert-circle-outline' : 'checkmark-circle-2-outline'}}"
+                                status="{{row.data[column] > row.data['actual'] ? 'danger' : row.data[column] > row.data['actual'] ? 'warning' : 'success'}}">
+                            </nb-icon> -->
+                            {{row.data[column] | number: '.2-2'}}
+                        </td>
+                    </ng-container>
+                </table>
+
+            </nb-card-body>
+            <nb-icon icon="arrowhead-down-outline" pack="eva" class="flip-icon positionIcon" (click)="toggleViewTow()"
+                *ngIf="!ListflippedTow">
+            </nb-icon>
+            <nb-icon icon="arrowhead-up-outline" pack="eva" class="flip-icon positionIcon" (click)="toggleViewTow()"
+                *ngIf="ListflippedTow">
+            </nb-icon>
+            <button nbButton hero status="info" (click)="generateReport()" class=" positionBotonAcc flip-icon add-filter" shape="round"
+            size="small"><nb-icon icon="message-square-outline" style="color: white;"></nb-icon>
+            </button>
+        </nb-card>
+    </div>
+</div>

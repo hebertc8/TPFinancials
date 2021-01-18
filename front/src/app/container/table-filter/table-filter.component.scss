@@ -1,0 +1,422 @@
+@import '../../nebular/@theme/styles/themes';
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/breakpoints';
+/**
+ * 00. Ajustes basicos
+ *
+ * -------------------------------------------------------------------
+ */
+.container-table{
+    padding: 5px;
+    width: 100%;
+    // height: 400px;
+    border-radius: 5px;
+    padding-top: 20px;
+}
+
+.echart {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+.echartTemplate{
+  display: block;
+  height: 100%;
+  width: 220% !important;
+}
+
+.add-filter{
+    margin-top: 10px;
+    // margin-left: 110px;
+    font-weight: bold;
+    text-align: center;
+    padding-left: 12px;
+    width: 26px;
+    margin: auto;
+    height: 26px;
+    margin-left: 20px;
+}
+
+.report{
+  margin-top: 10px;
+  // margin-left: 110px;
+  font-weight: bold;
+  text-align: center;
+  padding-left: 12px;
+  width: 32px;
+  margin: auto;
+  height: 32px;
+  margin-left: 20px;
+}
+
+.add-filter-graf{
+  margin-top: 10px;
+  // margin-left: 110px;
+  font-weight: bold;
+  text-align: center;
+  padding-left: 12px;
+  width: 89px;
+  margin: auto;
+  height: 26px;
+  margin-left: 20px;
+}
+
+nb-card-header{
+    padding-bottom: 0px;
+}
+.legend{
+    margin: 1rem 2rem;
+    display: flex;
+    align-items: center;
+}
+
+.blue {
+    background: #008fd2;
+    height: 14px;
+    margin-top: 9px;
+}
+
+.purple {
+  background-color: rgb(1,12,80);
+  height: 14px;
+  margin-top: 9px;
+}
+
+.orange{
+    background: rgb(243 185 21);
+    margin-top: 9px;
+}
+
+.green {
+    background: #00ffaf;
+    height: 14px;
+    margin-top: 9px;
+}
+
+.legend-item-color {
+    min-width: 15px;
+    min-height: 15px;
+    border-radius: 0.2rem;
+    margin-left: 20px;
+}
+
+.banner {
+  max-height: 150px;
+}
+
+.container-image img {
+  width: 29%;
+  vertical-align: top;
+  text-align: center !important;
+  // margin-bottom: -20px;
+  // min-height: 10px;
+}
+
+.imagepr {
+  background-image: url('../../../assets/Banner-11.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center 0;
+  vertical-align: top;
+  border: none;
+}
+
+
+.imagebg {
+  // background-image: url('../../../assets/Banner-12.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center 0;
+  vertical-align: top;
+  border: none;
+}
+
+.imageTr{
+  // background-image: url('../../../assets/bannerPrin.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center 0;
+  vertical-align: top;
+  border: none;
+}
+
+.title{
+    padding-top: 8.8px;
+    padding-left: 0.75px;
+    white-space: nowrap;
+    margin-left: .8rem;
+}
+
+.contenedor-toggle {
+  // text-align: right;
+  text-align: inherit;
+  padding-left: 1%;
+}
+
+
+
+/**
+ * 00. Ajustes de card
+ *
+ * -------------------------------------------------------------------
+ */
+
+ @include nb-install-component() {
+    $slide-out-container-width: 40%;
+    position: relative;
+    display: block;
+    overflow: hidden;
+    nb-card {
+      position: relative;
+      transform: translate3d(0,0,0);
+    }
+    .summary-container {
+      display: flex;
+      flex-wrap: wrap;
+      flex: 1;
+      background-color: nb-theme(background-basic-color-2);
+      justify-content: space-between;
+      padding: 1rem 3rem 1rem;
+      border: 1px solid nb-theme(border-basic-color-3);
+      border-left: none;
+      border-right: none;
+      margin-left: -23px;
+      margin-right: -24px;
+    }
+    .show-hide-toggle {
+      display: block;
+      position: absolute;
+      top: 1.5rem;
+      @include nb-ltr(right, 1.5rem);
+      @include nb-rtl(left, 1.5rem);
+      cursor: pointer;
+      background-color: transparent;
+      z-index: 2;
+    }
+    nb-tabset nb-tab{
+      padding: 0 !important;
+      overflow: hidden;
+    }
+    .slide-out-container {
+      @include nb-ltr {
+        border-top-right-radius: nb-theme(card-border-radius);
+        border-bottom-right-radius: nb-theme(card-border-radius);
+      }
+      @include nb-rtl {
+        border-top-left-radius: nb-theme(card-border-radius);
+        border-bottom-left-radius: nb-theme(card-border-radius);
+      }
+      position: absolute;
+      padding: 1.5rem;
+      width: $slide-out-container-width;
+    }
+  
+    .slide-out-container,
+    .slide-out-container::before {
+      display: block;
+      height: 97%;
+      top: 0;
+      overflow: hidden;
+      transition: all 0.2s ease-out;
+    }
+  
+    .slide-out-container::before {
+      content: '';
+      @include nb-ltr(right, 0);
+      @include nb-rtl(left, 0);
+      width: 100%;
+      position: absolute;
+      background: nb-theme(slide-out-background);
+    //   box-shadow: nb-theme(slide-out-shadow-color);
+    //   @include nb-rtl(box-shadow, nb-theme(slide-out-shadow-color-rtl));
+      opacity: 0.6;
+      z-index: 1;
+    }
+  
+    .slide-out-container.collapsed {
+      @include nb-ltr(left, calc(100% - 6rem));
+      @include nb-rtl(right, calc(100% - 6rem));
+    }
+  
+    .slide-out-container.expanded {
+      left: calc(100% + 1px - #{$slide-out-container-width});
+      @include nb-rtl(left, auto);
+      @include nb-rtl(right, calc(100% - #{$slide-out-container-width}));
+    }
+  
+    .content-wrapper {
+      z-index: 1;
+      position: relative;
+      width: 100%;
+      margin: 0 6rem;
+      transition: all 0.2s ease-out;
+    }
+  
+    .expanded .content-wrapper {
+      margin: 0;
+    }
+  
+    @include media-breakpoint-down(md) {
+      $slide-out-container-width: 50%;
+  
+      .slide-out-container {
+        width: $slide-out-container-width;
+      }
+  
+      .slide-out-container.expanded {
+        left: calc(100% + 1px - #{$slide-out-container-width});
+        @include nb-rtl(right, calc(100% + 1px - #{$slide-out-container-width}));
+      }
+    }
+  
+    @include media-breakpoint-down(is) {
+      $slide-out-container-width: 100%;
+  
+      .show-hide-toggle {
+        right: 0.5rem;
+      }
+  
+      .slide-out-container {
+        width: $slide-out-container-width;
+      }
+  
+      .slide-out-container.collapsed {
+        left: calc(100% + 1px - 3rem);
+        @include nb-rtl(right, calc(100% - 3rem));
+      }
+  
+      .slide-out-container.expanded {
+        left: calc(100% + 1px - #{$slide-out-container-width});
+        @include nb-rtl(right, calc(100% - #{$slide-out-container-width}));
+      }
+    }
+
+    .visitors-statistics {
+        width: 100%;
+      }
+    
+      .visitors-title {
+        margin-top: 1rem;
+      }
+    
+      .statistics-chart {
+        margin: 1.5rem 0;
+        width: 100%;
+    
+        .echart {
+          display: block;
+          height: 13.75rem;
+          width: 100%;
+        }
+      }
+    
+      .chart-values {
+        display: flex;
+      }
+    
+      .chart-value {
+        flex: 1;
+      }
+    
+      .visitors-statistics-legend ::ng-deep {
+        .legends {
+          padding: 0;
+          margin-left: 0;
+        }
+    
+        .legend {
+          flex: 1;
+          margin-left: 0;
+          justify-content: flex-start;
+        }
+      }
+  }
+  
+.coins-container{
+    margin: 10px 0;
+}
+
+.chart-container {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.container-comparative-graphic{
+  width: 20rem;
+  // min-width: 350px;
+}
+
+
+
+@media screen and (min-width: 275px) and (max-width: 821px){
+  .container-image{
+    width: 6rem;
+    text-align: center !important;
+  }
+  .add-filter-graf {
+    margin-left: 1.5rem;
+  }
+  .flip-icon {
+    margin-right: 20rem;
+  }
+  .echartTemplate{
+    display: block;
+    height: 100%;
+    width: 100% !important;
+  }
+    
+  .contenedor-toggle {
+    justify-content: center !important;
+    padding-left: 15%;
+  }
+
+  .ordenRadio{
+    margin: auto;
+  }
+
+  .report{
+    margin:auto
+  }
+
+}
+
+@media screen and (max-width: 768px){
+
+  .banner {
+    max-height: 100px;
+  }
+  .container-image{
+    text-align: center !important;
+    width: 100%;
+    min-height: 100px;
+  }
+  
+  .container-image img{
+    width: 100%;
+    text-align: center !important;
+  }
+
+  .container-comparative-graphic{
+    width: 10rem;
+    min-width: 295px;
+  }
+  .echart {
+    width: 100%;
+  }
+}
+
+.alinear{
+  text-align: center;
+}
+
+.revenueVerde {
+  background: green !important;
+}
+
+.revenueRojo {
+  background: red !important;
+}

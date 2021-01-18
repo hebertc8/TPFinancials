@@ -1,0 +1,135 @@
+<!-- <nb-card class="row">
+    <nb-card-body class="p-0">
+        <img src="assets/Banner-03.png" alt="" class="stylePhoto">
+    </nb-card-body>
+</nb-card> -->
+
+<!-- <app-banner [name]="'Banner-03.png'"></app-banner> -->
+
+
+<nb-card class="col-md-12 col-lg-12">
+    <!-- <nb-card-header>
+        <div class="row text-center">
+            <div class="col-md-6 col-sm-6 col-lg mb-3">
+                <p for="marketInput">Region</p>
+                <nb-select id="marketInput" multiple size="tiny" [(ngModel)]="region" placeholder="Select All">
+                    <nb-option [value]="null">Select All</nb-option>
+                    <nb-option *ngFor="let m of regionArray" [value]="m">{{m}}</nb-option>
+                </nb-select>
+            </div>
+            <div class="col-md-6 col-sm-6 col-lg mb-3">
+                <p for="clientInput">Country</p>
+                <nb-select id="clientInput" multiple size="tiny" [(ngModel)]="country" placeholder="Select All">
+                    <nb-option [value]="null">Select All</nb-option>
+                    <nb-option *ngFor="let c of countryArray" [value]="c">{{c}}</nb-option>
+                </nb-select>
+            </div>
+            <div class="col-md-6 col-sm-6 col-lg mb-3">
+                <p for="campaignInput">Sub</p>
+                <nb-select id="campaignInput" multiple size="tiny" [(ngModel)]="sub" placeholder="Select All">
+                    <nb-option [value]="null">Select All</nb-option>
+                    <nb-option *ngFor="let c of subArray" [value]="c">{{c}}</nb-option>
+                </nb-select>
+            </div>
+        </div>
+    </nb-card-header> -->
+    <nb-card-body>
+        <div class="row sliderPosition">
+            <div class="col-md-6 col-sm-6 col-lg mb-3">
+                <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options">
+                </ng5-slider>
+            </div>
+            <div class="col-md-6 col-sm-6 col-lg mb-3">
+                <ng5-slider [(value)]="minValueMonth" [(highValue)]="maxValueMonth" [options]="optionsMonth">
+                </ng5-slider>
+            </div>
+            <div class="col-md-12 col-sm-12 col-lg mb-3 pt-3">
+                <button nbButton status="primary" shape="round" (click)="filterSelected(0)">
+                    <nb-icon icon="search-outline"></nb-icon>
+                </button>
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>
+
+
+
+<div>
+    <!-- <nb-card-body> -->
+    <div class="row">
+
+        <div class="col-lg-12">
+            <nb-card size="medium" accent="primary">
+                <nb-card-header class="text-center">
+                    {{titleCountry}}
+                </nb-card-header>
+                <nb-card-body class="mapnb-card-body">
+                    <app-map (select)="selectCountryById($event)" countryId="COL"></app-map>
+                </nb-card-body>
+            </nb-card>
+        </div>
+        <div class="col-lg-6">
+        <nb-reveal-card [showToggleButton]="false" [revealed]="revealed">
+            <nb-card-front>
+                <nb-card [nbSpinner]="spinnerGrossCou" class="tamanoCard">
+                    <nb-card-header>
+                        <span>Gross</span>
+                    </nb-card-header>
+                    <nb-card-body>
+                        <!-- <nb-tab tabTitle="Gross"> -->
+                        <div id="chart" [nbSpinner]="spinnerGrossCou" nbSpinnerStatus="primary">
+                            <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart"
+                                [xaxis]="chartOptions.xaxis" [markers]="chartOptions.markers"
+                                [stroke]="chartOptions.stroke" [yaxis]="chartOptions.yaxis"
+                                [dataLabels]="chartOptions.dataLabels" [fill]="chartOptions.fill"
+                                [tooltip]="chartOptions.tooltip" [legend]="chartOptions.legend"
+                                [colors]="chartOptions.colors" [theme]="chartOptions.theme">
+                            </apx-chart>
+                        </div>
+                    </nb-card-body>
+                    <nb-icon class="toggle-icon" icon="chevron-up-outline" pack="eva" (click)="toggleView()">
+                    </nb-icon>
+                </nb-card>
+            </nb-card-front>
+            <nb-card-back>
+                <nb-card [nbSpinner]="spinnerGrossCou" class="tamanoCard">
+                <nb-card-header>
+                    <span>Overhead</span>
+                </nb-card-header>
+                <nb-card-body>
+                    <!-- <nb-tab tabTitle="Overhead"> -->
+                    <div id="sga">
+                        <apx-chart [series]="chartOptionsSga.series" [chart]="chartOptionsSga.chart"
+                            [xaxis]="chartOptionsSga.xaxis" [markers]="chartOptionsSga.markers"
+                            [stroke]="chartOptionsSga.stroke" [yaxis]="chartOptionsSga.yaxis"
+                            [dataLabels]="chartOptionsSga.dataLabels" [fill]="chartOptionsSga.fill"
+                            [tooltip]="chartOptionsSga.tooltip" [legend]="chartOptionsSga.legend"
+                            [colors]="chartOptionsSga.colors" [theme]="chartOptionsSga.theme">
+                        </apx-chart>
+                    </div>
+                </nb-card-body>
+                <nb-icon class="toggle-icon" icon="chevron-up-outline" pack="eva" (click)="toggleView()">
+                </nb-icon>
+                </nb-card>
+            </nb-card-back>
+        </nb-reveal-card>
+        </div>
+        <div id="grossCou" class="col-lg-6">
+            <nb-card style="height: 28rem;" [nbSpinner]="spinnerGrossCou" nbSpinnerStatus="primary">
+                <nb-card-header class="text-center" style="padding-bottom: 0.6rem;padding-top: 1.8rem;">
+                    COMPARATIVE OF COUNTRIES
+                </nb-card-header>
+                <nb-card-body style="padding-top: 0;">
+                    <apx-chart [series]="chartOptionsGrossCou.series" [chart]="chartOptionsGrossCou.chart"
+                        [xaxis]="chartOptionsGrossCou.xaxis" [markers]="chartOptionsGrossCou.markers"
+                        [stroke]="chartOptionsGrossCou.stroke" [yaxis]="chartOptionsGrossCou.yaxis"
+                        [dataLabels]="chartOptionsGrossCou.dataLabels" [fill]="chartOptionsGrossCou.fill"
+                        [tooltip]="chartOptionsGrossCou.tooltip" [legend]="chartOptionsGrossCou.legend"
+                        [colors]="chartOptionsGrossCou.colors" [theme]="chartOptionsGrossCou.theme">
+                    </apx-chart>
+                </nb-card-body>
+            </nb-card>
+        </div>
+    </div>
+    <!-- </nb-card-body> -->
+</div>

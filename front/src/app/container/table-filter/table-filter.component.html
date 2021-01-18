@@ -1,0 +1,288 @@
+<nb-card class="imagepr" id="Summary">
+    <nb-card-body>
+        <div class="row banner">
+            <div class="container-image col-xs-12 col-md-6">
+                <img src="../../../assets/Summary.png">
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>
+<nb-card>
+    <nb-card-header class="row">
+        <div class="col-md-10">
+            Financials
+            <button nbButton hero status="info" (click)="onCustom($event)" class="add-filter" shape="round"
+                size="small"><i class="nb-plus tam"></i>
+            </button>
+            <button  nbButton ghost (click)="generateXlxsSumary()" size="small">
+                <nb-icon icon="download-outline"></nb-icon>
+            </button>
+            <p style="font-size: 0.75rem; line-height: 2rem; color:#8f9bb3">
+                Click here to add new row in the table
+                <i>"Semaphoreizations always between OB and RFT"</i>
+            </p>
+        </div>
+        <div class="col-md-2 contenedor-toggle d-flex justify-content-end mediaQ">
+            <nb-radio-group [(ngModel)]="coinSelected" status="primary" labelPosition="left" class="ordenRadio">
+                <nb-radio [value]="false" (click)="checkedCoin(true)" >EUR</nb-radio>
+                <nb-radio [value]="true" (click)="checkedCoin(true)" >USD-COP</nb-radio>
+            </nb-radio-group>
+            <button nbButton hero status="info" (click)="generateReport()" class="report" shape="round"
+            size="small"><nb-icon icon="message-square-outline" style="color: white;"></nb-icon>
+            </button>
+            <!-- <nb-toggle [(ngModel)]="coinSelected" labelPosition="left" (checkedChange)="checkedCoin(true)"
+                status="basic">{{labelToggle}}</nb-toggle> -->
+        </div>
+    </nb-card-header>
+    <nb-card-body class="container-table">
+        <ng2-smart-table (userRowSelect)="onUserRowSelect($event,dialog)" [settings]="settings" [source]="source"
+            (createConfirm)="onCustom($event)" (custom)="onCustom($event)">
+        </ng2-smart-table>
+    </nb-card-body>
+</nb-card>
+
+<div class="row" id="History">
+    <div class="col-md-12 col-lg-12">
+        <nb-card>
+            <nb-card-header>
+                <div class="row">
+                    <div class="col-md-12 col-lg-6">
+                        Historical chart
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-11 col-lg-11">
+                        <p style="font-size: 0.75rem; line-height: 2rem; color:#8f9bb3; margin-bottom: 0px;">Dynamic
+                            multiple selection chart</p>
+                    </div>
+                    <div class="col-md-1 col-lg-1">
+                        <button nbButton hero status="info" (click)="generateReport()" class="report" shape="round"
+                        size="small"><nb-icon icon="message-square-outline" style="color: white;"></nb-icon>
+                        </button>
+                    </div>
+                </div>
+                <!-- <div class="row d-flex justify-content-center">
+                    <div class="col-md-12 col-lg-4 mt-1 alinear">
+                        <nb-select id="campaignInput" size="tiny" [(ngModel)]="objCampaign.campaign"
+                            placeholder="Campaign" (selectedChange)="getAllGraphics($event)">
+                            <nb-option [value]="null">Select All</nb-option>
+                            <nb-option *ngFor="let c of campaignArray" [value]="c">{{c}}</nb-option>
+                        </nb-select>
+                    </div>
+                    <div class="col-md-12 col-lg-4 my-1 alinear">
+                        <nb-select id="clientInput" class="comboBox" size="tiny" [(ngModel)]="objCampaign.year"
+                            placeholder="Year" (selectedChange)="getAllGraphics($event)">
+                            <nb-option *ngFor="let y of yearArray" [value]="y">{{y}}</nb-option>
+                        </nb-select>
+                    </div>
+                    <div class="col-md-12 col-lg-4 my-1 alinear">
+                        <nb-select id="clientInput" class="comboBox" size="tiny" [(ngModel)]="objCampaign.month"
+                            placeholder="Month" (selectedChange)="getAllGraphics($event)">
+                            <nb-option *ngFor="let m of monthArray" [value]="m">{{m}}</nb-option>
+                        </nb-select>
+                    </div>
+                </div> -->
+                <nb-tabset fullWidth>
+                    <nb-tab tabTitle="Revenue">
+                        <div class="summary-container">
+                            <div class="coins-container">
+                                <div style="font-weight: 100">EUR OB</div>
+                                <div class="h6">{{eurOb | number : '.2-2'}}</div>
+                            </div>
+                            <div class="coins-container">
+                                <div style="font-weight: 100">EUR ACT</div>
+                                <div class="h6">{{eurAct | number : '.2-2'}}</div>
+                            </div>
+                            <div class="coins-container">
+                                <div style="font-weight: 100">Currency</div>
+                                <div class="h6">{{coin}}</div>
+                            </div>
+                            <div class="coins-container">
+                                <div style="font-weight: 100">TRM OB</div>
+                                <h6>{{trmOb | number: '.2-2'}}</h6>
+                            </div>
+                            <div class="coins-container">
+                                <div style="font-weight: 100">TRM ACT</div>
+                                <h6>{{trmAct | number: '.2-2'}}</h6>
+                            </div>
+                        </div>
+                        <div *ngIf="this.themeActual" class="pt-3">
+                            <div [nbSpinner]="spinnerRevenue" nbSpinnerStatus="primary" nbSpinnerSize="large" echarts
+                                [options]="option" [merge]="option" class="echart">
+                            </div>
+                        </div>
+                    </nb-tab>
+                    <nb-tab tabTitle="Direct Cost">
+                        <div class="summary-container">
+                            <div class="coins-container">
+                                <div style="font-weight: 100">EUR OB</div>
+                                <div class="h6">{{eurOb | number : '.2-2'}}</div>
+                            </div>
+                            <div class="coins-container">
+                                <div style="font-weight: 100">EUR ACT</div>
+                                <div class="h6">{{eurAct | number : '.2-2'}}</div>
+                            </div>
+                            <div class="coins-container">
+                                <div style="font-weight: 100">Currency</div>
+                                <div class="h6">{{coin}}</div>
+                            </div>
+                            <div class="coins-container">
+                                <div style="font-weight: 100">TRM OB</div>
+                                <h6>{{trmOb | number: '.2-2'}}</h6>
+                            </div>
+                            <div class="coins-container">
+                                <div style="font-weight: 100">TRM ACT</div>
+                                <h6>{{trmAct | number: '.2-2'}}</h6>
+                            </div>
+                        </div>
+                        <div *ngIf="this.themeActual" class="pt-3">
+                            <div [nbSpinner]="spinnerDirectCost" nbSpinnerStatus="primary" nbSpinnerSize="large" echarts
+                                [options]="optionBar" [merge]="optionBar" class="echart"></div>
+                        </div>
+                    </nb-tab>
+                    <nb-tab tabTitle="GM">
+                        <div class="summary-container">
+                            <div class="coins-container">
+                                <div style="font-weight: 100">EUR OB</div>
+                                <div class="h6">{{eurOb | number : '.2-2'}}</div>
+                            </div>
+                            <div class="coins-container">
+                                <div style="font-weight: 100">EUR ACT</div>
+                                <div class="h6">{{eurAct | number : '.2-2'}}</div>
+                            </div>
+                            <div class="coins-container">
+                                <div style="font-weight: 100">Currency</div>
+                                <div class="h6">{{coin}}</div>
+                            </div>
+                            <div class="coins-container">
+                                <div style="font-weight: 100">TRM OB</div>
+                                <h6>{{trmOb | number: '.2-2'}}</h6>
+                            </div>
+                            <div class="coins-container">
+                                <div style="font-weight: 100">TRM ACT</div>
+                                <h6>{{trmAct | number: '.2-2'}}</h6>
+                            </div>
+                        </div>
+                        <div nbSpinnerStatus="primary" nbSpinnerSize="large" *ngIf="this.themeActual" echarts
+                            [options]="optionsBarGm" class="echart mt-3">
+                        </div>
+                    </nb-tab>
+                    <nb-tab tabTitle="GM%">
+                        <div class="summary-container">
+                            <div class="coins-container">
+                                <div style="font-weight: 100">EUR OB</div>
+                                <div class="h6">{{eurOb | number : '.2-2'}}</div>
+                            </div>
+                            <div class="coins-container">
+                                <div style="font-weight: 100">EUR ACT</div>
+                                <div class="h6">{{eurAct | number : '.2-2'}}</div>
+                            </div>
+                            <div class="coins-container">
+                                <div style="font-weight: 100">Currency</div>
+                                <div class="h6">{{coin}}</div>
+                            </div>
+                            <div class="coins-container">
+                                <div style="font-weight: 100">TRM OB</div>
+                                <h6>{{trmOb | number: '.2-2'}}</h6>
+                            </div>
+                            <div class="coins-container">
+                                <div style="font-weight: 100">TRM ACT</div>
+                                <h6>{{trmAct | number: '.2-2'}}</h6>
+                            </div>
+                        </div>
+                        <div nbSpinnerStatus="primary" nbSpinnerSize="large" *ngIf="this.themeActual" echarts
+                            [options]="optionBarPORGM" class="echart mt-3">
+                        </div>
+                    </nb-tab>
+                </nb-tabset>
+            </nb-card-header>
+        </nb-card>
+    </div>
+</div>
+
+<nb-card class="imagebg text-center" id="Revenue">
+    <nb-card-body>
+        <div class="row banner">
+            <div class="container-image col-xs-12 col-md-12">
+                <h3>Revenue & Cost</h3>
+                <span>Here you will be able to find the information related to the income, direct cost and gm of all the
+                    campaigns, in addition you will be able to choose a date in which you want to have a report
+                    regarding the last 6 months after this.</span>
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>
+<app-detail-revenue></app-detail-revenue>
+
+<app-detail-cost id="Cost"></app-detail-cost>
+
+
+<!-- <nb-card class="imageTr text-center" id="CGP" *ngIf="this.filtersArray[0].pass===1">
+    <nb-card-body>
+        <div class="row banner">
+            <div class="container-image col-xs-12 col-md-12">
+                <h3>CGP</h3>
+                <span>Here you will be able to find the information related to the income, direct cost and gm of all the
+                    campaigns, in addition you will be able to choose a date in which you want to have a report
+                    regarding the last 6 months after this.</span>
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>
+<app-cgp *ngIf="this.filtersArray[0].pass===1"></app-cgp>
+
+
+<nb-card class="imageTr text-center" id="Actual CGP" *ngIf="this.filtersArray[0].pass===1">
+    <nb-card-body>
+        <div class="row banner">
+            <div class="container-image col-xs-12 col-md-12">
+                <h3>Actual CGP</h3>
+                <span>Here you will be able to find the information related to the income, direct cost and gm of all the
+                    campaigns, in addition you will be able to choose a date in which you want to have a report
+                    regarding the last 6 months after this.</span>
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>
+<app-actual-cgp *ngIf="this.filtersArray[0].pass===1"></app-actual-cgp> -->
+
+<ng-template #dialog let-data let-ref="dialogRef">
+    <nb-flip-card [showToggleButton]="false" [flipped]="Listflipped">
+        <nb-card-front>
+            <nb-card>
+                <nb-card-header>
+                    Graphic Comparative
+                </nb-card-header>
+                <nb-card-body>
+                    <div class="container-comparative-graphic">
+                        <div echarts *ngIf="listFilters && !Listflipped" [options]="optionComparative"
+                            [merge]="optionComparative" class="echartTemplate"></div>
+                    </div>
+                </nb-card-body>
+                <nb-icon icon="grid-outline" pack="eva" class="flip-icon" (click)="toggleView()">
+                </nb-icon>
+                <nb-card-footer>
+                    <button class="colorBotonD" nbButton (click)="ref.close()">Close</button>
+                </nb-card-footer>
+            </nb-card>
+        </nb-card-front>
+        <nb-card-back>
+            <nb-card>
+                <nb-card-header>
+                    Graphic Comparative GM
+                </nb-card-header>
+                <nb-card-body>
+                    <div class="container-comparative-graphic">
+                        <div echarts *ngIf="listFilters && Listflipped" [options]="optionComparativeGm"
+                            [merge]="optionComparativeGm" class="echartTemplate"></div>
+                    </div>
+                </nb-card-body>
+                <nb-icon icon="grid-outline" pack="eva" class="flip-icon" (click)="toggleView()">
+                </nb-icon>
+                <nb-card-footer>
+                    <button class="colorBotonD" nbButton (click)="ref.close()">Close</button>
+                </nb-card-footer>
+            </nb-card>
+        </nb-card-back>
+    </nb-flip-card>
+</ng-template>

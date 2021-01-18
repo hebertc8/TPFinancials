@@ -1,0 +1,307 @@
+@import '../../nebular/@theme/styles/themes';
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/breakpoints';
+.colorTables{
+  background:#a1a1a725;
+  padding-bottom: 5%;
+}
+
+.color {
+  color: rgb(1, 12,80);
+}
+
+.stylePhoto{
+width: 100%; 
+position: relative;
+//  margin-left: 16px;
+}
+
+@include nb-install-component() {
+  .summary-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1;
+    background-color: nb-theme(background-basic-color-2);
+    justify-content: space-between;
+    padding: 1rem 3rem 1rem;
+    border: 1px solid nb-theme(border-basic-color-3);
+    border-left: none;
+    border-right: none;
+    margin-left: -23px;
+    margin-right: -24px;
+  }
+}
+
+
+.coins-container{
+  text-align: center;
+  margin: 10px 0;
+}
+
+.colorGraphics{
+background:white;
+}
+
+.chart-container {
+  position: relative;
+ //  margin-bottom: 10%;
+  height: 40vh;
+  min-height: 10vh;
+}
+
+.msg{
+  display: none;
+}
+
+.alinear{
+  text-align: center;
+}
+
+h4 {
+ font-size: 1.325rem;
+}
+
+tr {
+ font-size: 0.8125rem !important;
+}
+
+p {
+ font-size: 0.8125rem !important;
+}
+
+@media only screen and (min-width: 100px) and (max-width: 768px) {
+
+   
+table{
+  width: 31rem;
+}
+}
+
+@media only screen and (min-width: 100px) and (max-width: 603px) {
+.chart-container{
+  display: none;
+}
+.msg {
+  display: inline-block;
+  font-size: 16px;
+}
+}
+
+
+#barHor {
+ max-width: 400px;
+ // max-height: ;
+ // margin: 35px auto;
+}
+
+.settingsCardDown{
+ overflow:auto;
+}
+
+.positionIcon{
+    margin-top: 10px;
+    margin-right: 40px;
+    // color: #020962;
+}
+
+.positionIconRefresh{
+  margin-top: 10px;
+  margin-right: 67px;
+  // color: #020962;
+}
+
+.positionBoton{
+  margin-right: 4px;
+  margin-top: 6px;
+}
+
+.heightDiv{
+  min-height: 0 !important;
+  // height: 66px !important;
+  // background:#020962 !important;
+}
+
+/**
+ * 00. Ajustes de card
+ *
+ * -------------------------------------------------------------------
+ */
+
+ @include nb-install-component() {
+  $slide-out-container-width: 40%;
+  position: relative;
+  display: block;
+  overflow: hidden;
+  nb-card {
+    position: relative;
+    transform: translate3d(0,0,0);
+  }
+  .summary-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1;
+    background-color: nb-theme(background-basic-color-2);
+    justify-content: space-between;
+    padding: 1rem 3rem 1rem;
+    border: 1px solid nb-theme(border-basic-color-3);
+    border-left: none;
+    border-right: none;
+    margin-left: -23px;
+    margin-right: -24px;
+  }
+  .show-hide-toggle {
+    display: block;
+    position: absolute;
+    top: 1.5rem;
+    @include nb-ltr(right, 1.5rem);
+    @include nb-rtl(left, 1.5rem);
+    cursor: pointer;
+    background-color: transparent;
+    z-index: 2;
+  }
+  nb-tabset nb-tab{
+    padding: 0 !important;
+    overflow: hidden;
+  }
+  .slide-out-container {
+    @include nb-ltr {
+      border-top-right-radius: nb-theme(card-border-radius);
+      border-bottom-right-radius: nb-theme(card-border-radius);
+    }
+    @include nb-rtl {
+      border-top-left-radius: nb-theme(card-border-radius);
+      border-bottom-left-radius: nb-theme(card-border-radius);
+    }
+    position: absolute;
+    padding: 1.5rem;
+    width: $slide-out-container-width;
+  }
+
+  .slide-out-container,
+  .slide-out-container::before {
+    display: block;
+    height: 100%;
+    top: 0;
+    overflow: hidden;
+    transition: all 0.2s ease-out;
+  }
+
+  .slide-out-container::before {
+    content: '';
+    @include nb-ltr(right, 0);
+    @include nb-rtl(left, 0);
+    width: 100%;
+    position: absolute;
+    background: nb-theme(slide-out-background);
+  //   box-shadow: nb-theme(slide-out-shadow-color);
+  //   @include nb-rtl(box-shadow, nb-theme(slide-out-shadow-color-rtl));
+    opacity: 0.6;
+    z-index: 1;
+  }
+
+  .slide-out-container.collapsed {
+    @include nb-ltr(left, calc(100% - 6rem));
+    @include nb-rtl(right, calc(100% - 6rem));
+  }
+
+  .slide-out-container.expanded {
+    left: calc(100% + 1px - #{$slide-out-container-width});
+    @include nb-rtl(left, auto);
+    @include nb-rtl(right, calc(100% - #{$slide-out-container-width}));
+  }
+
+  .content-wrapper {
+    z-index: 1;
+    position: relative;
+    width: 100%;
+    margin: 0 6rem;
+    transition: all 0.2s ease-out;
+  }
+
+  .expanded .content-wrapper {
+    margin: 0;
+  }
+
+  @include media-breakpoint-down(md) {
+    $slide-out-container-width: 50%;
+
+    .slide-out-container {
+      width: $slide-out-container-width;
+    }
+
+    .slide-out-container.expanded {
+      left: calc(100% + 1px - #{$slide-out-container-width});
+      @include nb-rtl(right, calc(100% + 1px - #{$slide-out-container-width}));
+    }
+  }
+
+  @include media-breakpoint-down(is) {
+    $slide-out-container-width: 100%;
+
+    .show-hide-toggle {
+      right: 0.5rem;
+    }
+
+    .slide-out-container {
+      width: $slide-out-container-width;
+    }
+
+    .slide-out-container.collapsed {
+      left: calc(100% + 1px - 3rem);
+      @include nb-rtl(right, calc(100% - 3rem));
+    }
+
+    .slide-out-container.expanded {
+      left: calc(100% + 1px - #{$slide-out-container-width});
+      @include nb-rtl(right, calc(100% - #{$slide-out-container-width}));
+    }
+  }
+
+  .visitors-statistics {
+      width: 100%;
+    }
+  
+    .visitors-title {
+      margin-top: 1rem;
+    }
+  
+    .statistics-chart {
+      margin: 1.5rem 0;
+      width: 100%;
+  
+      .echart {
+        display: block;
+        height: 13.75rem;
+        width: 100%;
+      }
+    }
+  
+    .chart-values {
+      display: flex;
+    }
+  
+    .chart-value {
+      flex: 1;
+    }
+  
+    .visitors-statistics-legend ::ng-deep {
+      .legends {
+        padding: 0;
+        margin-left: 0;
+      }
+  
+      .legend {
+        flex: 1;
+        margin-left: 0;
+        justify-content: flex-start;
+      }
+    }
+}
+
+.fondoSlide{
+  backdrop-filter: blur(0.3rem) !important; 
+}
+
+.search{
+  margin-left: -5px !important;
+}

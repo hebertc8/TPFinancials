@@ -1,0 +1,46 @@
+.Form {
+   // display: table;
+    margin: auto;
+    max-width: 27rem !important;
+    min-width: 10rem;
+    margin-top: calc(50vh - 270px);
+}
+
+.iconShowPassword {
+    float: right;
+    cursor: pointer;
+}
+
+.logoContainer {
+    display: flex;
+}
+
+.logoForm {
+    max-height: 76px;
+    min-height: 40px;
+    min-width: 10px;
+    margin: auto;
+    display: block;
+}
+.textForm {
+    text-align: center;
+}
+
+.register {
+    text-align: center;
+}
+
+.buttonSubmit {
+    margin: 20px 0px;
+}
+
+.login {
+        height: 100%;
+        display: flex;
+        width: 100%;
+        margin: 0;
+}
+
+.layoutColumn {
+    padding: 2.25rem 2.25rem !important;
+}

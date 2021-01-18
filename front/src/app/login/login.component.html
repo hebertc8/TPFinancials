@@ -1,0 +1,82 @@
+<nb-layout>
+  <nb-layout-column class="layoutColumn">
+    <nb-card class="login">
+      <nb-card-body>
+        <form
+          aria-labelledby="title"
+          [formGroup]="form"
+          (ngSubmit)="login(form.valid)"
+          class="Form align-middle"
+        >
+          <div class="form-group logoContainer">
+            <img src="./assets/logos/logo.png" alt="Logo" class="logoForm" />
+          </div>
+          <div class="form-group">
+            <p class="textForm">Log in with your credentials</p>
+          </div>
+
+          <div class="form-group">
+            <label for="user" class="label">User</label>
+            <input
+              type="text"
+              nbInput
+              style="width: 100%; max-width: 100%;"
+              class="input-full-width size-large shape-semi-round ng-pristine"
+              formControlName="user"
+              id="user"
+              placeholder="User"
+              autofocus
+              fullWidth
+              (click)="resetError()"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="password" class="label">Password</label>
+            <nb-icon
+              icon="{{ showPassword ? 'eye-outline' : 'eye-off-2-outline' }}"
+              pack="eva"
+              class="iconShowPassword"
+              (click)="showPassword = !showPassword"
+            >
+            </nb-icon>
+            <input
+              type="{{ showPassword ? 'text' : 'password' }}"
+              nbInput
+              style="width: 100%; max-width: 100%;"
+              class="input-full-width size-large shape-semi-round ng-pristine"
+              formControlName="password"
+              id="password"
+              placeholder="Password"
+              fullWidth
+              (click)="resetError()"
+              (enter)="login(form.valid)"
+            />
+          </div>
+
+          <div class="form-group">
+            <p
+              class="text-center pb-0 mb-0"
+              style="color: red; text-transform: uppercase; font-weight: bold;"
+              *ngIf="error.status"
+            >
+              {{ error.error }}
+            </p>
+            <button
+              class="buttonSubmit"
+              nbButton
+              [nbSpinner]="loading"
+              nbSpinnerStatus="primary"
+              fullWidth
+              status="primary"
+              type="submit"
+              [disabled]="form.invalid"
+            >
+              Login
+            </button>
+          </div>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </nb-layout-column>
+</nb-layout>

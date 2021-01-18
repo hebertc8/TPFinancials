@@ -1,0 +1,182 @@
+@import 'themes';
+
+@import '~@nebular/theme/styles/globals';
+
+@include nb-install() {
+  @include nb-theme-global();
+};
+
+app-header {
+  width: 100%;
+}
+
+p {
+  font-size: 0.8125rem;
+}
+
+.cdk-global-scrollblock {
+  position: unset !important;
+}
+
+// .cdk-overlay-pane {
+//   width: 100%;
+// }
+
+
+.nb-theme-cosmic ng2-smart-table table tr td input[type="checkbox"] {
+  margin: 0 auto;
+  width: 1rem !important;
+  height: 1rem !important;
+}
+
+.nb-theme-default ng2-smart-table .ng2-smart-actions a.ng2-smart-action {
+  font-size: 1rem !important;
+  margin-bottom: -45px !important;
+}
+
+.nb-theme-cosmic ng2-smart-table .ng2-smart-actions a.ng2-smart-action {
+  // font-size: 0.8rem !important;
+  margin-bottom: -45px !important;
+}
+
+.nb-theme-cosmic ng2-smart-table table tr td {
+  font-size: 0.75rem !important;
+}
+
+.nb-theme-cosmic ng2-smart-table table tr td input[type="checkbox"] {
+  margin: 0 auto;
+  width: 1rem !important;
+  height: 1rem !important;
+}
+
+.nb-theme-cosmic ng2-smart-table table tr th input[type="checkbox"] {
+  display: none;
+}
+
+.nb-theme-cosmic ng2-smart-table table tr th {
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+}
+
+
+.nb-theme-cosmic ng2-smart-table table tr th a {
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+}
+
+.nb-theme-default ng2-smart-table table tr td {
+  font-size: 0.75rem;
+}
+
+.nb-theme-default ng2-smart-table table tr th {
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+}
+
+.nb-theme-default ng2-smart-table table tr th a {
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+}
+
+.nb-theme-default ng2-smart-table table tr td input[type="checkbox"] {
+  margin: 0 auto;
+  width: 1rem !important;
+  height: 1rem !important;
+}
+
+.nb-theme-default ng2-smart-table table tr th input[type="checkbox"] {
+  display: none;
+}
+
+.nb-theme-default nb-sidebar {
+  background-color: #ffffff96;
+  backdrop-filter: blur(1rem);
+}
+
+.nb-theme-cosmic  nb-sidebar {
+  background-color: #32325996;
+  backdrop-filter: blur(1rem);
+}
+
+
+.nb-theme-cosmic table {
+  color: white !important;
+}
+
+.nb-theme-default table  {
+  color: #020962 !important;
+}
+
+.nb-theme-cosmic  .ngx-pagination a, .ngx-pagination button {
+  color: white !important;
+}
+
+.nb-theme-default .ngx-pagination a, .ngx-pagination button {
+  color: #020962 !important;
+}
+
+.ngx-pagination:hover{
+  color: #020962 !important;
+}
+
+.nb-theme-default ng2-smart-table table tr td {
+  text-align: center;
+}
+
+/* You can add global styles to this file, and also import other style files */
+
+.flip-icon {
+  position: absolute;
+  right: 0.625rem;
+  top: 1rem;
+  @include nb-rtl(right, auto);
+  @include nb-rtl(left, 0.625rem);
+  cursor: pointer;
+  color: #000000;
+}
+
+::ng-deep {
+  .front-container {
+    max-width: 100%;
+  }
+
+  .flipped {
+    .back-container {
+      .flip-icon {
+        transform: scaleX(-1);
+      }
+    }
+
+    .front-container {
+      .flip-icon {
+        display: none;
+      }
+    }
+  }
+}
+
+.nb-theme-default nb-toggle.status-basic .toggle {
+  background-color: rgb(1 12 80 / 39%);
+}
+
+.nb-theme-cosmic nb-toggle.status-basic .toggle-switcher {
+  background-color: #1b1b38;
+}
+
+ng2-smart-table table tr.revenueRojo {
+  background-color:#fca3a357! important;
+}
+
+ng2-smart-table table tr.revenueVerde {
+  background-color: #00ffaf! important;
+}
+
+.fas {
+  color: #00feaf;
+  font-size: 15px;
+}
+
+.far {
+  color: #ff0000b0;
+  font-size: 15px;
+}

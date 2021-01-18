@@ -1,0 +1,119 @@
+<div class="header">
+    <div class="header-container">
+        <div class="logo-container">
+            <a (click)="toggleSidebar()" href="#" class="sidebar-toggle">
+                <nb-icon icon="menu-2-outline"></nb-icon>
+            </a>
+            <!-- <a routerLink="cointainer/main" class="logo">Financials</a> -->
+            <a class="logo" href="#" (click)="navigateHome()">
+                <img src="../../../assets/logos/Financials2.png" alt="Logo" class="logoForm">
+            </a>
+            <nb-select [selected]="currentTheme" (selectedChange)="changeTheme($event)" status="primary">
+                <nb-option *ngFor="let theme of themes" [value]="theme.value"> {{ theme.name }}</nb-option>
+            </nb-select>
+            <div class="ml-2" *ngIf="!change">
+                <nb-select id="marketInput" class="comboBox" [(ngModel)]="data.market" placeholder="Market"
+                    (selectedChange)="filterSelected($event,1)">
+                    <nb-option [value]="null">Select All</nb-option>
+                    <nb-option *ngFor="let m of marketArray" [value]="m">{{m}}</nb-option>
+                </nb-select>
+            </div>
+            <div class="ml-2" *ngIf="!change">
+                <nb-select id="clientInput" class="comboBox" [(ngModel)]="data.client" placeholder="Client"
+                    (selectedChange)="filterSelected($event,2)">
+                    <nb-option [value]="null">Select All</nb-option>
+                    <nb-option *ngFor="let c of clientArray" [value]="c">{{c}}</nb-option>
+                </nb-select>
+            </div>
+            <div class="ml-2" *ngIf="!change">
+                <nb-select id="campaignInput" [(ngModel)]="data.campaign" placeholder="Campaign"
+                    (selectedChange)="filterSelected($event,3)">
+                    <nb-option [value]="null">Select All</nb-option>
+                    <nb-option *ngFor="let c of campaignArray" [value]="c">{{c}}</nb-option>
+                </nb-select>
+            </div>
+            <div *ngIf="!change">
+                <div class="ml-1">
+                    <nb-select id="clientInput" class="comboBox" [(ngModel)]="data.year" placeholder="Year"
+                        (selectedChange)="filterDateSelected($event)" size="tiny">
+                        <nb-option *ngFor="let y of yearArray" [value]="y">{{y}}</nb-option>
+                    </nb-select>
+                </div>
+                <div class="ml-1">
+                    <nb-select id="clientInput" class="comboBox" [(ngModel)]="data.month" placeholder="Month"
+                        (selectedChange)="filterSelected($event,0)" size="tiny">
+                        <nb-option *ngFor="let m of monthArray" [value]="m">{{m}}</nb-option>
+                    </nb-select>
+                </div>
+            </div>
+            <!-- <div> -->
+                <!-- <div class="ml-1 col-lg-1">
+                    <nb-select id="clientInput" class="comboBox" [(ngModel)]="data.country" placeholder="Country"
+                    (selectedChange)="filterSelected($event,4)" size="tiny">
+                        <nb-option [value]="null">Select All</nb-option>
+                        <nb-option *ngFor="let c of countryArray" [value]="c">{{c}}</nb-option>
+                    </nb-select>
+                </div> -->
+                <!-- <div class="ml-1 col-lg-1">
+                    <nb-select id="marketInput" class="comboBox" [(ngModel)]="data.market" placeholder="Market"
+                    (selectedChange)="filterSelected($event,1)" size="tiny">
+                        <nb-option [value]="null">Select All</nb-option>
+                        <nb-option *ngFor="let m of marketArray" [value]="m">{{m}}</nb-option>
+                    </nb-select>
+                </div>
+
+                <div class="ml-1 col-lg-1">
+                    <nb-select id="clientInput" class="comboBox" [(ngModel)]="data.client" placeholder="Client"
+                    (selectedChange)="filterSelected($event,2)" size="tiny">
+                        <nb-option [value]="null">Select All</nb-option>
+                        <nb-option *ngFor="let c of clientArray" [value]="c">{{c}}</nb-option>
+                    </nb-select>
+                </div>
+            </div>
+            <div>
+                <div class="ml-1 col-lg-1">
+                    <nb-select id="campaignInput" [(ngModel)]="data.campaign" placeholder="Campaign" 
+                    (selectedChange)="filterSelected($event,3)" size="tiny">
+                        <nb-option [value]="null">Select All</nb-option>
+                        <nb-option *ngFor="let c of campaignArray" [value]="c">{{c}}</nb-option>
+                    </nb-select>
+                </div>
+            </div> -->
+                <div class="ml-2" *ngIf="change">
+                    <nb-select id="marketInput" multiple [(ngModel)]="region" placeholder="Select All">
+                        <nb-option [value]="null">Select All</nb-option>
+                        <nb-option *ngFor="let m of regionArray" [value]="m">{{m}}</nb-option>
+                    </nb-select>
+                </div>
+                <div class="ml-2" *ngIf="change">
+                    <nb-select id="clientInput" multiple [(ngModel)]="countryCgp" placeholder="Select All">
+                        <nb-option [value]="null">Select All</nb-option>
+                        <nb-option *ngFor="let c of countryArrayCgp" [value]="c">{{c}}</nb-option>
+                    </nb-select>
+                </div>
+                <div class="ml-2" *ngIf="change">
+                    <nb-select id="campaignInput" multiple [(ngModel)]="sub" placeholder="Select All">
+                        <nb-option [value]="null">Select All</nb-option>
+                        <nb-option *ngFor="let c of subArray" [value]="c">{{c}}</nb-option>
+                    </nb-select>
+                </div>
+                <div class="ml-2" *ngIf="change">
+                    <button nbButton status="primary" shape="round" (click)="filterSelectedcgp()">
+                        <nb-icon icon="search-outline"></nb-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="header-container">
+            <nb-actions size="small">
+                <nb-action class="user-action">
+                    <nb-user *ngIf="viewHeader" [name]="this.userInfo.nombre" [title]="this.userInfo.username"
+                        [onlyPicture]="userPictureOnly"
+                        [picture]="this.photo ? 'data:image/jpg;base64,' + this.photo : ''"
+                        [nbContextMenu]="profileMenu" nbContextMenuTag="menu-action" onlyPicture=true>
+                    </nb-user>
+                </nb-action>
+            </nb-actions>
+        </div>
+    </div>

@@ -1,0 +1,49 @@
+<div class="row text-center">
+    <div class="col-md-6 col-sm-6 col-lg-6 mb-3">
+        <p for="clientInput">Year</p>
+        <nb-select id="clientInput" class="comboBox" [(ngModel)]="data.year" placeholder="Select All"
+            (selectedChange)="filterDateSelected($event)">
+            <nb-option *ngFor="let y of yearArray" [value]="y">{{y}}</nb-option>
+        </nb-select>
+    </div>
+    <div class="col-md-6 col-sm-6 col-lg-6 mb-3">
+        <p for="clientInput">Month</p>
+        <nb-select id="clientInput" class="comboBox" [(ngModel)]="data.month" placeholder="Select All"
+        (selectedChange)="filterSelected($event,0)">
+            <nb-option *ngFor="let m of monthArray" [value]="m">{{m}}</nb-option>
+        </nb-select>
+    </div>
+    <div class="col-md-6 col-sm-6 col-lg-6 mb-3">
+        <p for="clientInput">Country</p>
+        <nb-select id="clientInput" class="comboBox" [(ngModel)]="data.country" placeholder="Select All"
+        (selectedChange)="filterSelected($event,4)">
+            <nb-option [value]="null">Select All</nb-option>
+            <nb-option *ngFor="let c of countryArray" [value]="c">{{c}}</nb-option>
+        </nb-select>
+    </div>
+    <div class="col-md-6 col-sm-6 col-lg-6 mb-3">
+        <p for="marketInput">Market</p>
+        <nb-select id="marketInput" class="comboBox" [(ngModel)]="data.market" placeholder="Select All"
+        (selectedChange)="filterSelected($event,1)">
+            <nb-option [value]="null">Select All</nb-option>
+            <nb-option *ngFor="let m of marketArray" [value]="m">{{m}}</nb-option>
+        </nb-select>
+    </div>
+    <div class="col-md-6 col-sm-6 col-lg-6 mb-3">
+        <p for="clientInput">Client</p>
+        <nb-select id="clientInput" class="comboBox" [(ngModel)]="data.client" placeholder="Select All"
+        (selectedChange)="filterSelected($event,2)">
+            <nb-option [value]="null">Select All</nb-option>
+            <nb-option *ngFor="let c of clientArray" [value]="c">{{c}}</nb-option>
+        </nb-select>
+    </div>
+    <div class="col-md-6 col-sm-6 col-lg-6 mb-3">
+        <p for="campaignInput">Campaign</p>
+        <nb-select id="campaignInput" [(ngModel)]="data.campaign" placeholder="Select All" 
+        (selectedChange)="filterSelected($event,3)">
+            <nb-option [value]="null">Select All</nb-option>
+            <nb-option *ngFor="let c of campaignArray" [value]="c">{{c}}</nb-option>
+        </nb-select>
+    </div>
+    <button nbButton outline style="margin: auto;" status="primary" (click)="findByFilters()">completed</button>
+</div>

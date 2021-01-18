@@ -1,0 +1,117 @@
+@import '../../nebular/@theme/styles/themes';
+.stylePhoto{
+  width: 100%;
+  position: relative;
+  // margin-left: 16px;
+}
+
+// #chart {
+//   // max-width: 45%;
+//   min-width: 400px;
+// }
+
+// #sga {
+//   max-width: 72%;
+//   min-width: 400px;
+// }
+
+// #depre {
+//   // max-width: 42%;
+//   min-width: 400px;
+// }
+
+// #grossCou {
+//   // max-width: 450px;
+//   min-width: 350px;
+//   // margin: 35px auto;
+// }
+
+#sgaCou {
+  // max-width: 450px;
+  min-width: 350px;
+  // margin: 35px auto;
+}
+
+#depreCou {
+  // max-width: 450px;
+  min-width: 350px;
+  // margin: 35px auto;
+}
+
+
+@media only screen and (min-width: 100px) and (max-width: 768px) {
+
+}
+
+@media only screen and (min-width: 100px) and (max-width: 992px) {
+.sliderPosition{
+  margin-left: 0% !important;
+  text-align: center;
+}
+// #chart {
+//   max-width: none;
+//   min-width: 400px;
+// }
+
+// #sga {
+//   max-width: none;
+//   min-width: 400px;
+// }
+
+// #depre {
+//   max-width: none;
+//   min-width: 400px;
+// }
+}
+.sliderPosition{
+margin-left: 18%;
+}
+
+h4 {
+font-size: 1.325rem;
+}
+
+tr {
+font-size: 0.8125rem !important;
+}
+
+p {
+font-size: 0.8125rem !important;
+}
+
+
+@import '../../nebular/@theme/styles/themes.scss';
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/breakpoints';
+
+@include nb-install-component() {
+
+.mapnb-card-body {
+  display: flex;
+  height: 100%;
+  padding: 0;
+}
+
+
+@include media-breakpoint-down(sm) {
+  .mapnb-card-body {
+    flex-direction: column;
+  }
+}
+}
+
+nb-tabset nb-tab{
+  padding: 0 !important;
+  overflow: hidden;
+}
+
+@include nb-install-component() {
+  .toggle-icon {
+    position: absolute;
+    top: 1rem;
+    right: 1.25rem;
+    @include nb-rtl(right, auto);
+    @include nb-rtl(left, 1.25rem);
+    cursor: pointer;
+  }
+}

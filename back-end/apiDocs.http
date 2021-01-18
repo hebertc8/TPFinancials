@@ -1,0 +1,113 @@
+@host = http://localhost:43233
+
+@edata = b290db87f18358c3a7efc77f3fc22e22e1eb565b3a8bb4a355399d2a7d5bcd4cf5e719ae8cd4c8183a09951d472370325198059e86965ab1b8062620d9658a18a9edb4a75a63e0dbe0c6a9fe1ab7c8e39e9849f9dc607c1cac94cf4ca04d051b6d4f14eb72362236a5b5eb0d0d1a2e51bcbcd1d1d1368f9326e32110f768c19d4593ce8c7d2fec0481803a7ce9cd3a1048dbe5de3ebd07b5592226df948f26f95e74c14f040363920cdb51bfcb5626e31fe068b6d59a691af0433d8d1888de9a60245ded0ab9a7146bebdb48aee88e0721ec493857a76625ad7cd7a9524fa724d24e8f6ec54925aba4e39756231b30701caf20ee3ff158e298a5d333f3c463cbefa2773af7195762cf7db5078c026e231fd19d71a5ce057337a7236003a2958ec3666afa5f867a5c51ce4738ef9dedd103fd231c47f29167ca239dcf284aee2c676d92ad5b4252e2db0cf08d62532948d20b3cea2b63361b28b1ec8a672907a69fed2933af4fb80b0a0043152520d48a
+@token = Bearer {{ccmslogin.response.body.token}}
+@Cookie = {{ccmslogin.response.headers.Set-Cookie}}
+
+### login
+// @name ccmslogin
+POST {{host}}/api/ccmslogin
+Content-Type: application/json
+
+{
+	"body": "seyJ1c2VyIjoibGV5dG9ubG9wZXouNSIsInBhc3MiOiJKdWFuMDMxMTIzLiJ9"
+} 
+
+### sql get data
+POST {{host}}/api/sqlget
+Content-Type: application/json
+Authorization: {{token}}
+CSRF-Token: IQkwnE17-BMzNXOaSjlLRNMpwLgW94zcOeuE
+
+{
+} 
+ 
+### sql update data
+POST {{host}}/api/sqlupdate
+Content-Type: application/json
+Authorization: {{token}}
+CSRF-Token: IQkwnE17-BMzNXOaSjlLRNMpwLgW94zcOeuE
+
+{
+	"id": 1,
+	"central":"Copas",
+	"mercado":"mercurio",
+	"pais":"sistema solar"
+} 
+ 
+### sql insert data
+POST {{host}}/api/sqlinsert
+Content-Type: application/json
+Authorization: {{token}}
+CSRF-Token: IQkwnE17-BMzNXOaSjlLRNMpwLgW94zcOeuE
+
+{
+	"central":"ariel",
+	"mercado":"en ibague",
+	"pais":"pluton"
+} 
+
+
+### sql delete data
+POST {{host}}/api/sqldelete
+Content-Type: application/json
+Authorization: {{token}}
+CSRF-Token: IQkwnE17-BMzNXOaSjlLRNMpwLgW94zcOeuE
+
+{
+	"id":64
+} 
+
+### detalle ingreso
+POST {{host}}/api/getUserCampaign
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+	"user": "Mercadoortega.5",
+	"caseType": 1
+} 
+
+### detalle ingreso
+POST {{host}}/api/getActualCgp
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+	"caseType": 6,
+	"region": null,
+	"country": "Colombia,Guyana",
+	"sub": null,
+	"yearIni": 2019,
+	"yearFin": 2020,
+	"monthIni": 7,
+	"monthFin": 12
+} 
+
+### detalle ingreso
+POST {{host}}/api/getCgp
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+	"caseType": 6,
+	"region": null,
+	"country": "Colombia",
+	"sub": "Colombia"
+} 
+
+### detalle ingreso
+POST {{host}}/api/getDetailCost
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+	"year": "2020",
+	"mes": "august",
+	"country": "colombia",
+	"mercado": "nearshore",
+	"cliente": null,
+	"campaign": null,
+	"caseType": 4
+
+} 

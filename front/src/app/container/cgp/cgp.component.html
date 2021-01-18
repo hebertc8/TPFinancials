@@ -1,0 +1,323 @@
+<!-- <nb-card class="row">
+    <nb-card-body class="p-0">
+        <img src="assets/Banner-03.png" alt="" class="stylePhoto">
+    </nb-card-body>
+</nb-card> -->
+
+<!-- <app-banner [name]="'Banner-10.png'"></app-banner> -->
+<nb-card class="imageTr text-center" id="CGP">
+    <nb-card-body>
+        <div class="row banner">
+            <div class="container-image col-xs-12 col-md-12">
+                <h3>CGP</h3>
+                <span>Here you will be able to find the information related to the income, direct cost and gm of all the
+                    campaigns, in addition you will be able to choose a date in which you want to have a report
+                    regarding the last 6 months after this.</span>
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>
+<!-- <nb-card class="col-md-12 col-lg-12">
+    <nb-card-header>
+        <div class="row text-center">
+            <div class="col-md-6 col-sm-6 col-lg mb-3">
+                <p for="marketInput">Region</p>
+                <nb-select id="marketInput" multiple size="tiny" [(ngModel)]="region" placeholder="Select All">
+                    <nb-option [value]="null">Select All</nb-option>
+                    <nb-option *ngFor="let m of regionArray" [value]="m">{{m}}</nb-option>
+                </nb-select>
+            </div>
+            <div class="col-md-6 col-sm-6 col-lg mb-3">
+                <p for="clientInput">Country</p>
+                <nb-select id="clientInput" multiple size="tiny" [(ngModel)]="country" placeholder="Select All">
+                    <nb-option [value]="null">Select All</nb-option>
+                    <nb-option *ngFor="let c of countryArray" [value]="c">{{c}}</nb-option>
+                </nb-select>
+            </div>
+            <div class="col-md-6 col-sm-6 col-lg mb-3">
+                <p for="campaignInput">Sub</p>
+                <nb-select id="campaignInput" multiple size="tiny" [(ngModel)]="sub" placeholder="Select All">
+                    <nb-option [value]="null">Select All</nb-option>
+                    <nb-option *ngFor="let c of subArray" [value]="c">{{c}}</nb-option>
+                </nb-select> -->
+            <!-- </div>
+            <div class="col-md-6 col-sm-6 col-lg-1 mb-3 my-auto mx-auto">
+                <button nbButton status="primary" shape="round" (click)="filterSelected(0)">
+                    <nb-icon icon="search-outline"></nb-icon>
+                </button>
+            </div>
+        </div>
+    </nb-card-header>
+</nb-card> -->
+
+<div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <nb-card>
+                <nb-tabset fullWidth>
+                    <nb-tab tabTitle="Actual and Projections">
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6">
+                                <nb-reveal-card [showToggleButton]="false" [revealed]="revealed">
+                                    <nb-card-front>
+                                        <nb-card [nbSpinner]="spinnerTblAP" class="tamanoCard">
+                                            <nb-card-header>
+                                                <span>Actual and Projections</span>
+                                            </nb-card-header>
+                                            <nb-card-body>
+                                                <!-- <nb-card [nbSpinner]="spinnerTblAP" nbSpinnerStatus="primary" class="tamanoCard">
+                                                            <nb-card-body> -->
+                                                <table id="tablaUno" class="table table-striped table-bordered" scrollX="true">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">Version</th>
+                                                            <th scope="col">NetRev</th>
+                                                            <th scope="col">Gross</th>
+                                                            <th scope="col">SGA</th>
+                                                            <th scope="col">Depreciation</th>
+                                                            <th scope="col">EBIT</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngFor="let data of tableGrafBarArray">
+                                                            <th scope="row">{{ data.version }}</th>
+                                                            <td> ${{ data.netrev | number: '.2-2' }}</td>
+                                                            <td> ${{ data.gross | number: '.2-2' }}</td>
+                                                            <td> ${{ data.sga | number: '.2-2' }} </td>
+                                                            <td> ${{ data.depreciation | number: '.2-2' }} </td>
+                                                            <td> ${{ data.ebit | number: '.2-2' }} </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <!-- </nb-card-body>
+                                                        </nb-card> -->
+                                            </nb-card-body>
+                                            <nb-icon class="toggle-icon" icon="chevron-up-outline" pack="eva"
+                                                (click)="toggleView()">
+                                            </nb-icon>
+                                        </nb-card>
+                                    </nb-card-front>
+                                    <nb-card-back>
+                                        <nb-card [nbSpinner]="spinnerActualPro" class="tamanoCard">
+                                            <nb-card-header>
+                                                <span>Actual and Projections</span>
+                                            </nb-card-header>
+                                            <nb-card-body>
+                                                <div nbSpinnerStatus="primary" [nbSpinner]="spinnerActualPro"
+                                                    nbSpinnerSize="large" *ngIf="this.themeActual" echarts
+                                                    [options]="optionsActualProjections" class="echart">
+                                                </div>
+                                            </nb-card-body>
+                                            <nb-icon class="toggle-icon" icon="chevron-down-outline" pack="eva"
+                                                (click)="toggleView()">
+                                            </nb-icon>
+                                        </nb-card>
+                                    </nb-card-back>
+                                </nb-reveal-card>
+                            </div>
+                            <div class="col-md-6 col-lg-6">
+                                <nb-card [nbSpinner]="spinnerTblAP" nbSpinnerStatus="primary" size="tiny" class="tamanoCard">
+                                    <nb-card-body>
+                                        <table id="tablaDos" class="table table-striped table-bordered" scrollX="true">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Version</th>
+                                                    <th scope="col">%Gross</th>
+                                                    <th scope="col">%SGA</th>
+                                                    <th scope="col">%Depreciation</th>
+                                                    <th scope="col">%EBIT</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let data of tableApArray">
+                                                    <th style="width: 111px;" scope="row">{{ data.version }}</th>
+                                                    <td style="width: 111px;">        
+                                                        <nb-icon
+                                                            icon="{{data.gross < 0 ? 'close-circle-outline' : data.gross < 6 ? 'alert-circle-outline' : 'checkmark-circle-2-outline'}}"
+                                                            status="{{data.gross < 0 ? 'danger' : data.gross < 6 ? 'warning' : 'success'}}">
+                                                        </nb-icon> 
+                                                        {{ data.gross | number: '.2-2' }}%</td>
+                                                    <td style="width: 111px;">
+                                                        <nb-icon
+                                                            icon="{{data.sga < 0 ? 'close-circle-outline' : data.sga < 6 ? 'alert-circle-outline' : 'checkmark-circle-2-outline'}}"
+                                                            status="{{data.sga < 0 ? 'danger' : data.sga < 6 ? 'warning' : 'success'}}">
+                                                        </nb-icon>  
+                                                        {{ data.sga | number: '.2-2' }}% </td>
+                                                    <td style="width: 111px;">
+                                                        <nb-icon
+                                                            icon="{{data.depreciation < 0 ? 'close-circle-outline' : data.depreciation < 6 ? 'alert-circle-outline' : 'checkmark-circle-2-outline'}}"
+                                                            status="{{data.depreciation < 0 ? 'danger' : data.depreciation < 6 ? 'warning' : 'success'}}">
+                                                        </nb-icon>  
+                                                        {{ data.depreciation | number: '.2-2' }}% </td>
+                                                    <td style="width: 111px;">
+                                                        <nb-icon
+                                                            icon="{{data.ebit < 0 ? 'close-circle-outline' : data.ebit < 6 ? 'alert-circle-outline' : 'checkmark-circle-2-outline'}}"
+                                                            status="{{data.ebit < 0 ? 'danger' : data.ebit < 6 ? 'warning' : 'success'}}">
+                                                        </nb-icon>   
+                                                        {{ data.ebit | number: '.2-2' }}% </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </nb-card-body>
+                                </nb-card>
+                            </div>
+                        </div>
+                    </nb-tab>
+                    <nb-tab tabTitle="variation">
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6">
+                                <nb-reveal-card [showToggleButton]="false" [revealed]="revealedTow">
+                                    <nb-card-front>
+                                        <nb-card [nbSpinner]="spinnerTblVaria" class="tamanoCard">
+                                            <nb-card-header>
+                                                <span>Variation</span>
+                                            </nb-card-header>
+                                            <nb-card-body>
+                                                <!-- <nb-card [nbSpinner]="spinnerTblAP" nbSpinnerStatus="primary" class="tamanoCard">
+                                                    <nb-card-body> -->
+                                                <table id="tablaTres" class="table table-striped table-bordered" scrollX="true">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">Version</th>
+                                                            <th scope="col">NetRev</th>
+                                                            <th scope="col">Gross</th>
+                                                            <th scope="col">SGA</th>
+                                                            <th scope="col">Depreciation</th>
+                                                            <th scope="col">EBIT</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngFor="let data of tableGrafVarArray">
+                                                            <th scope="row">{{ data.version }}</th>
+                                                            <td> ${{ data.netrev | number: '.2-2' }}</td>
+                                                            <td> ${{ data.gross | number: '.2-2' }}</td>
+                                                            <td> ${{ data.sga | number: '.2-2' }} </td>
+                                                            <td> ${{ data.depreciation | number: '.2-2' }} </td>
+                                                            <td> ${{ data.ebit | number: '.2-2' }} </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <!-- </nb-card-body>
+                                                </nb-card> -->
+                                            </nb-card-body>
+                                            <nb-icon class="toggle-icon" icon="chevron-up-outline" pack="eva" (click)="toggleViewTwo()">
+                                            </nb-icon>
+                                        </nb-card>
+                                    </nb-card-front>
+                                    <nb-card-back>
+                                        <nb-card [nbSpinner]="spinnerVariation" class="tamanoCard">
+                                            <nb-card-header>
+                                                <span>Variation</span>
+                                            </nb-card-header>
+                                            <nb-card-body>
+                                                <div nbSpinnerStatus="primary" [nbSpinner]="spinnerActualPro" nbSpinnerSize="large"
+                                                    *ngIf="this.themeActual" echarts [options]="optionsVariation" class="echart">
+                                                </div>
+                    
+                                            </nb-card-body>
+                                            <nb-icon class="toggle-icon" icon="chevron-down-outline" pack="eva" (click)="toggleViewTwo()">
+                                            </nb-icon>
+                                        </nb-card>
+                                    </nb-card-back>
+                                </nb-reveal-card>
+                            </div>
+                            <div class="col-md-6 col-lg-6">
+                                <nb-card [nbSpinner]="spinnerTblVaria" nbSpinnerStatus="primary" class="tamanoCard">
+                                    <nb-card-body>
+                                        <table id="tablaCuatro" class="table table-striped table-bordered" scrollX="true">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Version</th>
+                                                    <th scope="col">%Net</th>
+                                                    <th scope="col">%Gross</th>
+                                                    <th scope="col">%SGA</th>
+                                                    <th scope="col">%Depreciation</th>
+                                                    <th scope="col">%EBIT</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let data of tableVariArray">
+                                                    <th scope="row">{{ data.version }}</th>
+                            
+                                                    <td>
+                                                        <nb-icon
+                                                            icon="{{data.net < 0 ? 'close-circle-outline' : data.net < 6 ? 'alert-circle-outline' : 'checkmark-circle-2-outline'}}"
+                                                            status="{{data.net < 0 ? 'danger' : data.net < 6 ? 'warning' : 'success'}}">
+                                                        </nb-icon>
+                                                        {{ data.net | number: '.2-2' }}%
+                                                    </td>
+                                                    <td>
+                                                        <nb-icon
+                                                            icon="{{data.gross<0 ? 'close-circle-outline' : data.gross < 6 ? 'alert-circle-outline' : 'checkmark-circle-2-outline'}}"
+                                                            status="{{data.gross<0 ? 'danger' : data.gross < 6 ? 'warning' : 'success'}}">
+                                                        </nb-icon>
+                                                        {{ data.gross | number: '.2-2' }}%
+                                                    </td>
+                                                    <td>
+                                                        <nb-icon
+                                                            icon="{{data.sga<0 ? 'close-circle-outline' : data.sga < 6 ? 'alert-circle-outline' : 'checkmark-circle-2-outline'}}"
+                                                            status="{{data.sga<0 ? 'danger' : data.sga < 6 ? 'warning' : 'success'}}">
+                                                        </nb-icon>
+                                                        {{ data.sga | number: '.2-2' }}%
+                                                    </td>
+                                                    <td>
+                                                        <nb-icon
+                                                            icon="{{data.depreciation<0 ? 'close-circle-outline' : data.depreciation < 6 ? 'alert-circle-outline' : 'checkmark-circle-2-outline'}}"
+                                                            status="{{data.depreciation<0 ? 'danger' : data.depreciation < 6 ? 'warning' : 'success'}}">
+                                                        </nb-icon>
+                                                        {{ data.depreciation | number: '.2-2' }}%
+                                                    </td>
+                                                    <td>
+                                                        <nb-icon
+                                                            icon="{{data.ebit<0 ? 'close-circle-outline' : data.ebit < 6 ? 'alert-circle-outline' : 'checkmark-circle-2-outline'}}"
+                                                            status="{{data.ebit<0 ? 'danger' : data.ebit < 6 ? 'warning' : 'success'}}">
+                                                        </nb-icon>
+                                                        {{ data.ebit | number: '.2-2' }}%
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <table id="tablaCinco" class="table table-striped table-bordered" scrollX="true">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Version</th>
+                                                    <th scope="col">Gross</th>
+                                                    <th scope="col">SGA</th>
+                                                    <th scope="col">Depreciation</th>
+                                                    <th scope="col">EBIT</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let data of tablePointVarArray">
+                                                    <th scope="row">{{ data.version }}</th>
+                                                    <td> {{ data.gross }}</td>
+                                                    <td> {{ data.sga }} </td>
+                                                    <td> {{ data.depreciation }} </td>
+                                                    <td> {{ data.ebit }} </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </nb-card-body>
+                                </nb-card>
+                            </div>
+                        </div>
+                    </nb-tab>
+                </nb-tabset>
+            </nb-card>
+        </div>
+    </div>
+</div>
+
+<nb-card class="imageTr text-center" id="Actual CGP">
+    <nb-card-body>
+        <div class="row banner">
+            <div class="container-image col-xs-12 col-md-12">
+                <h3>Actual CGP</h3>
+                <span>Here you will be able to find the information related to the income, direct cost and gm of all the
+                    campaigns, in addition you will be able to choose a date in which you want to have a report
+                    regarding the last 6 months after this.</span>
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>
+<app-actual-cgp></app-actual-cgp>

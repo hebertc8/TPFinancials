@@ -1,0 +1,166 @@
+<!-- <div class="row">
+    <img src="assets/Banner-03.png" alt="" class="stylePhoto">
+</div> -->
+
+<nb-card class="col-md-12 col-lg-12" style="margin-bottom: 0%;">
+    <nb-card-header>
+        <div class="row text-center">
+            <div class="col-md-6 col-sm-6 col-lg-4 mb-3">
+                <p for="clientInput">Year</p>
+                <nb-select id="clientInput" class="comboBox" [(ngModel)]="year" placeholder="Select All"
+                    (selectedChange)="filterDateSelected($event)">
+                    <nb-option *ngFor="let y of yearArray" [value]="y">{{y}}</nb-option>
+                </nb-select>
+            </div>
+            <div class="col-md-6 col-sm-6 col-lg-4 mb-3">
+                <p for="clientInput">Month</p>
+                <nb-select id="clientInput" class="comboBox" [(ngModel)]="month" placeholder="Select All"
+                    (selectedChange)="filterSelected($event,0)">
+                    <nb-option *ngFor="let m of monthArray" [value]="m">{{m}}</nb-option>
+                </nb-select>
+            </div>
+            <div class="col-md-6 col-sm-6 col-lg-4 mb-3">
+                <p for="clientInput">Country</p>
+                <nb-select id="clientInput" class="comboBox" [(ngModel)]="country" placeholder="Select All"
+                    (selectedChange)="filterSelected($event,4)">
+                    <nb-option [value]="null">Select All</nb-option>
+                    <nb-option *ngFor="let c of countryArray" [value]="c">{{c}}</nb-option>
+                </nb-select>
+            </div>
+            <div class="col-md-6 col-sm-6 col-lg-4 mb-3">
+                <p for="marketInput">Market</p>
+                <nb-select id="marketInput" class="comboBox" [(ngModel)]="market" placeholder="Select All"
+                    (selectedChange)="filterSelected($event,1)">
+                    <nb-option [value]="null">Select All</nb-option>
+                    <nb-option *ngFor="let m of marketArray" [value]="m">{{m}}</nb-option>
+                </nb-select>
+            </div>
+            <div class="col-md-6 col-sm-6 col-lg-4 mb-3">
+                <p for="clientInput">Client</p>
+                <nb-select id="clientInput" class="comboBox" [(ngModel)]="client" placeholder="Select All"
+                    (selectedChange)="filterSelected($event,2)">
+                    <nb-option [value]="null">Select All</nb-option>
+                    <nb-option *ngFor="let c of clientArray" [value]="c">{{c}}</nb-option>
+                </nb-select>
+            </div>
+            <div class="col-md-6 col-sm-6 col-lg-4 mb-3">
+                <p for="campaignInput">Campaign</p>
+                <nb-select id="campaignInput" [(ngModel)]="campaign" placeholder="Select All"
+                    (selectedChange)="filterSelected($event,3)">
+                    <nb-option [value]="null">Select All</nb-option>
+                    <nb-option *ngFor="let c of campaignArray" [value]="c">{{c}}</nb-option>
+                </nb-select>
+            </div>
+        </div>
+    </nb-card-header>
+    <nb-card-body>
+        <div class="row">
+
+            <div class="col-lg d-inline-block col-md-6" [nbSpinner]="spinnerActual" nbSpinnerStatus="primary">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Actual</th>
+                            <th scope="col" class="btnDown">
+                                <button  nbButton ghost (click)="generateXlxs(1)" size="small">
+                                    <nb-icon icon="download-outline"></nb-icon>
+                                </button></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of tableActual">
+                            <th scope="row">{{ data.indicator }}</th>
+                            <td> {{ data.valor | number: '.2-2' }} </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-lg d-inline-block col-md-6" [nbSpinner]="spinnerOb" nbSpinnerStatus="primary">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">OB</th>
+                            <th scope="col" class="btnDown"><button nbButton ghost (click)="generateXlxs(2)" size="small">
+                                    <nb-icon icon="download-outline"></nb-icon>
+                                </button></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of tableOb">
+                            <th scope="row">{{ data.indicator }}</th>
+                            <td> {{ data.valor | number: '.2-2' }} </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-lg d-inline-block col-md-6" [nbSpinner]="spinnerRft" nbSpinnerStatus="primary">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">RFT</th>
+                            <th scope="col" class="btnDown"><button nbButton ghost (click)="generateXlxs(3)" size="small">
+                                    <nb-icon icon="download-outline"></nb-icon>
+                                </button></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of tableRft">
+                            <th scope="row">{{ data.indicator }}</th>
+                            <td> {{ data.valor | number: '.2-2' }} </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div id="chart" class="col-lg mb-4  col-md-6 mx-auto">
+                <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart"
+                    [plotOptions]="chartOptions.plotOptions" [labels]="chartOptions.labels"
+                    [legend]="chartOptions.legend" [colors]="chartOptions.colors"
+                    [responsive]="chartOptions.responsive"></apx-chart>
+            </div>
+            <div id="bar" class="col-lg mx-auto" [nbSpinner]="spinnerGraphic" nbSpinnerStatus="primary">
+                <apx-chart [series]="chartOptionsBar.series" [chart]="chartOptionsBar.chart"
+                    [dataLabels]="chartOptionsBar.dataLabels" [plotOptions]="chartOptionsBar.plotOptions"
+                    [xaxis]="chartOptionsBar.xaxis" [yaxis]="chartOptionsBar.yaxis" [title]="chartOptionsBar.title"
+                    [stroke]="chartOptionsBar.stroke" [colors]="chartOptionsBar.colors"></apx-chart>
+            </div>
+            <!-- <div class="col-lg chart-container" [nbSpinner]="spinnerGraphic" nbSpinnerStatus="primary">
+                <p>CPH & RPH EUR</p>
+                <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+                    [legend]="barChartLegend" [chartType]="barChartType">
+                </canvas>
+            </div> -->
+            <div class="col-lg-2 eur">
+                <h4 [nbSpinner]="spinnerEur" nbSpinnerStatus="primary">{{eurOb | number : '.2-2'}}</h4>
+                <p>EUR OB</p>
+                <h4 [nbSpinner]="spinnerEur" nbSpinnerStatus="primary">{{eurAct | number : '.2-2'}}</h4>
+                <p>EUR ACT</p>
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>
+
+
+<!-- <div class="row">
+    <img src="assets/Banner-10.png" alt="" class="stylePhoto">
+</div> -->
+
+<!-- <div class="row pt-4 colorTables px-4 mb-5 mx-0"> -->
+<!-- <div class="col-lg chart-container" [nbSpinner]="spinnerDetailReve" nbSpinnerStatus="primary"
+        style="display: block">
+        <p>Detail Revenue Direct Cost</p>
+        <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+            [legend]="barChartLegend" [chartType]="barChartType">
+        </canvas>
+    </div>
+    <div class="col-lg chart-container" [nbSpinner]="spinnerNetReve" nbSpinnerStatus="primary" style="display: block">
+        <p>NET Revenue (<strong>Actual, RFT, OB</strong>)</p>
+        <canvas baseChart [datasets]="barChartDataHor" [labels]="barChartLabelsHor" [options]="barChartOptionsHor"
+            [legend]="barChartLegend" [chartType]="barChartTypeHor">
+        </canvas>
+    </div> -->
+
+<!-- </div> -->

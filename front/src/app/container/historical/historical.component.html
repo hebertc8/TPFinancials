@@ -1,0 +1,211 @@
+<!-- <div class="row ">
+    <img src="assets/Banner-08.png" alt="" class="stylePhoto">
+</div> -->
+<nb-card style="margin-bottom: 0%">
+    <nb-card-header>
+        <div class="row text-center">
+            <div class="col-md-6 col-sm-6 col-lg-4 mt-3 ">
+                <p for="clientInput">Year</p>
+                <nb-select id="clientInput" class="comboBox" [(ngModel)]="year" placeholder="Select All"
+                    (selectedChange)="filterDateSelected($event)">
+                    <nb-option *ngFor="let y of yearArray" [value]="y">{{y}}</nb-option>
+                </nb-select>
+            </div>
+            <div class="col-md-6 col-sm-6 col-lg-4 mt-3 ">
+                <p for="clientInput">Month</p>
+                <nb-select id="clientInput" class="comboBox" [(ngModel)]="month" placeholder="Select All"
+                    (selectedChange)="filterSelected($event,0)">
+                    <nb-option *ngFor="let m of monthArray" [value]="m">{{m}}</nb-option>
+                </nb-select>
+            </div>
+            <div class="col-md-6 col-sm-6 col-lg-4 mt-3 ">
+                <p for="clientInput">Country</p>
+                <nb-select id="clientInput" class="comboBox" [(ngModel)]="country" placeholder="Select All"
+                    (selectedChange)="filterSelected($event,4)">
+                    <nb-option [value]="null">Select All</nb-option>
+                    <nb-option *ngFor="let c of countryArray" [value]="c">{{c}}</nb-option>
+                </nb-select>
+            </div>
+            <div class="col-md-6 col-sm-6 col-lg-4 mt-3 ">
+                <p for="marketInput">Market</p>
+                <nb-select id="marketInput" class="comboBox" [(ngModel)]="market" placeholder="Select All"
+                    (selectedChange)="filterSelected($event,1)">
+                    <nb-option [value]="null">Select All</nb-option>
+                    <nb-option *ngFor="let m of marketArray" [value]="m">{{m}}</nb-option>
+                </nb-select>
+            </div>
+            <div class="col-md-6 col-sm-6 col-lg-4 mt-3 ">
+                <p for="clientInput">Client</p>
+                <nb-select id="clientInput" class="comboBox" [(ngModel)]="client" placeholder="Select All"
+                    (selectedChange)="filterSelected($event,2)">
+                    <nb-option [value]="null">Select All</nb-option>
+                    <nb-option *ngFor="let c of clientArray" [value]="c">{{c}}</nb-option>
+                </nb-select>
+            </div>
+            <div class="col-md-6 col-sm-6 col-lg-4 mt-3 ">
+                <p for="campaignInput">Campaign</p>
+                <nb-select id="campaignInput" class="comboBox" [(ngModel)]="campaign" placeholder="Select All"
+                    (selectedChange)="filterSelected($event,3)">
+                    <nb-option [value]="null">Select All</nb-option>
+                    <nb-option *ngFor="let c of campaignArray" [value]="c">{{c}}</nb-option>
+                </nb-select>
+            </div>
+        </div>
+    </nb-card-header>
+    <nb-card-body>
+        <div class="row">
+            <div class="col-lg-2 col-md-4  col-sm-6" [nbSpinner]="spinnerLastMonth" nbSpinnerStatus="primary">
+                <table class="table table-striped">
+                    <thead class="bg-primary">
+                        <tr>
+                            <th scope="col" class="align-middle">{{lastMonth}}</th>
+                            <th class="text-center" scope="col">{{lastYear}} <button nbButton ghost
+                                    (click)="generateXlxs(4)" size="small" class="btn">
+                                    <nb-icon icon="download-outline"></nb-icon>
+                                </button></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of tableLastMonth">
+                            <th scope="row">{{ data.indicator }}</th>
+                            <td> {{ data.valor | number : '.2-2'}} </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-lg-2 col-md-4  col-sm-6" [nbSpinner]="spinnerLastYear" nbSpinnerStatus="primary">
+                <table class="table table-striped">
+                    <thead class="bg-primary">
+                        <tr>
+                            <th scope="col" class="align-middle">{{nowMonth}}</th>
+                            <th class="text-center" scope="col">{{lastYear}} <button nbButton ghost
+                                    (click)="generateXlxs(5)" size="small" class="btn">
+                                    <nb-icon icon="download-outline"></nb-icon>
+                                </button></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of tableLastYear">
+                            <th scope="row">{{ data.indicator }}</th>
+                            <td> {{ data.valor | number : '.2-2'}} </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-lg-2 col-md-4  col-sm-6" [nbSpinner]="spinnerLastYM" nbSpinnerStatus="primary">
+                <table class="table table-striped">
+                    <thead class="bg-primary">
+                        <tr>
+                            <th scope="col" class="align-middle">{{lastMonth}}</th>
+                            <th class="text-center" scope="col">{{nowYear}} <button nbButton ghost
+                                    (click)="generateXlxs(6)" size="small" class="btn">
+                                    <nb-icon icon="download-outline"></nb-icon>
+                                </button></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of tableLastYearMonth">
+                            <th scope="row">{{ data.indicator }}</th>
+                            <td> {{ data.valor | number : '.2-2'}} </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-lg-2 col-md-4  col-sm-6" [nbSpinner]="spinnerActual" nbSpinnerStatus="primary">
+                <table class="table table-striped">
+                    <thead class="bg-success">
+                        <tr>
+                            <th scope="col" class="align-middle">{{nowMonth}}</th>
+                            <th class="text-center" scope="col">{{nowYear}} <button nbButton ghost
+                                    (click)="generateXlxs(1)" size="small" class="btn">
+                                    <nb-icon icon="download-outline"></nb-icon>
+                                </button></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of tableActual">
+                            <th scope="row">{{ data.indicator }}</th>
+                            <td> {{ data.valor | number : '.2-2'}} </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-lg-2 col-md-4 col-sm-6" [nbSpinner]="spinnerOb" nbSpinnerStatus="primary">
+                <table class="table table-striped">
+                    <thead class="bg-success">
+                        <tr>
+                            <th scope="col" class="align-middle">OB</th>
+                            <th class="text-center" scope="col">{{nowYear}} <button nbButton ghost
+                                    (click)="generateXlxs(2)" size="small" class="btn">
+                                    <nb-icon icon="download-outline"></nb-icon>
+                                </button></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of tableOb">
+                            <th scope="row">{{ data.indicator }}</th>
+                            <td> {{ data.valor | number : '.2-2'}} </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-lg-2 col-md-4 col-sm-6" [nbSpinner]="spinnerRft" nbSpinnerStatus="primary">
+                <table class="table table-striped">
+                    <thead class="bg-success">
+                        <tr>
+                            <th scope="col" class="align-middle">RFT</th>
+                            <th class="text-center" scope="col">{{nowYear}} <button nbButton ghost
+                                    (click)="generateXlxs(3)" size="small" class="btn">
+                                    <nb-icon icon="download-outline"></nb-icon>
+                                </button></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of tableRft">
+                            <th scope="row">{{ data.indicator }}</th>
+                            <td> {{ data.valor | number : '.2-2'}} </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>
+
+<!-- <div class="row ">
+    <img src="assets/Banner-04.png" alt="" class="stylePhoto">
+</div> -->
+<div class="row pt-4 colorTables px-4 mx-0">
+
+    <div id="rev" class="col-lg-6 col-xl col-md-6 mx-auto" [nbSpinner]="spinnerNetReve" nbSpinnerStatus="primary">
+        <apx-chart [series]="chartOptionsRev.series" [chart]="chartOptionsRev.chart"
+            [dataLabels]="chartOptionsRev.dataLabels" [plotOptions]="chartOptionsRev.plotOptions"
+            [xaxis]="chartOptionsRev.xaxis" [yaxis]="chartOptionsRev.yaxis" [title]="chartOptionsRev.title"
+            [stroke]="chartOptionsRev.stroke" [colors]="chartOptionsRev.colors"></apx-chart>
+    </div>
+
+    <div id="dc" class="col-lg-6 col-xl col-md-6 mx-auto" [nbSpinner]="spinnerCost" nbSpinnerStatus="primary">
+        <apx-chart [series]="chartOptionsDc.series" [chart]="chartOptionsDc.chart"
+            [dataLabels]="chartOptionsDc.dataLabels" [plotOptions]="chartOptionsDc.plotOptions"
+            [xaxis]="chartOptionsDc.xaxis" [yaxis]="chartOptionsDc.yaxis" [title]="chartOptionsDc.title"
+            [stroke]="chartOptionsDc.stroke" [colors]="chartOptionsDc.colors"></apx-chart>
+    </div>
+
+    <div id="gm" class="col-lg-6 col-xl col-md-6 mx-auto" [nbSpinner]="spinnerGM" nbSpinnerStatus="primary">
+        <apx-chart [series]="chartOptionsGm.series" [chart]="chartOptionsGm.chart"
+            [dataLabels]="chartOptionsGm.dataLabels" [plotOptions]="chartOptionsGm.plotOptions"
+            [xaxis]="chartOptionsGm.xaxis" [yaxis]="chartOptionsGm.yaxis" [title]="chartOptionsGm.title"
+            [stroke]="chartOptionsGm.stroke" [colors]="chartOptionsGm.colors"></apx-chart>
+    </div>
+    <div class="col-lg-6 col-xl-1 col-md-6 eur mr-4">
+        <h4 [nbSpinner]="spinnerEur" nbSpinnerStatus="primary">{{eurOb | number : '.2-2'}}</h4>
+        <p>EUR OB</p>
+        <h4 [nbSpinner]="spinnerEur" nbSpinnerStatus="primary">{{eurAct | number : '.2-2'}}</h4>
+        <p>EUR ACT</p>
+    </div>
+</div>

@@ -1,0 +1,81 @@
+.colorTables{
+    background:#8f9bb31c;
+}
+
+.stylePhoto{
+  width: 98%;
+  position: relative;
+  margin-left: 16px;
+}
+
+.heightDiv{
+  height: 150px;
+}
+
+.colorGraphics{
+  background:white;
+}
+
+h4 {
+  font-size: 1.325rem;
+}
+
+.table {
+  font-size: 0.8125rem !important;
+}
+
+p {
+  font-size: 0.8125rem !important;
+}
+
+  .chart-container {
+    position: relative;
+    margin-bottom: 10%;
+    height: 40vh;
+    min-height: 10vh;
+  }
+
+  .eur {
+
+  }
+
+  .row {
+    margin-right: 0%;
+  }
+
+  @media only screen and (min-width: 100px) and (max-width: 768px) {
+    
+    .stylePhoto{
+      width: 95.5%;
+    }
+  }
+
+@media only screen and (min-width: 100px) and (max-width: 1200px) {
+  .eur {
+    margin-top: 5%;
+    text-align: center;
+  }
+}
+#rev {
+  max-width: 350px;
+  // max-height: ;
+  // margin: 35px auto;
+}
+#dc {
+  max-width: 350px;
+  // max-height: ;
+  // margin: 35px auto;
+}
+#gm {
+  max-width: 350px;
+  // max-height: ;
+  // margin: 35px auto;
+}
+
+ .btn {
+   color: black !important;
+ }
+
+ .asd {
+   display: block;
+ }

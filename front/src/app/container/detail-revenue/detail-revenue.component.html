@@ -1,0 +1,354 @@
+<!-- <nb-card class="row">
+    <nb-card-body class="p-0">
+        <img src="assets/Banner-09.png" alt="" class="stylePhoto">
+    </nb-card-body>
+</nb-card> -->
+
+<!-- <app-banner [name]="'Banner-09.png'"></app-banner> -->
+
+<!-- <nb-card class="col-md-12 col-lg-12">
+    <nb-card-header>
+        <div class="row text-center">
+            <div class="col-md-6 col-sm-6 col-lg mb-3">
+                <p for="marketInput">Market</p>
+                <nb-select id="marketInput" class="comboBox" [(ngModel)]="market" placeholder="Select All"
+                    (selectedChange)="filterSelected($event, 1)">
+                    <nb-option [value]="null">Select All</nb-option>
+                    <nb-option *ngFor="let m of marketArray" [value]="m">{{m}}</nb-option>
+                </nb-select>
+            </div>
+            <div class="col-md-6 col-sm-6 col-lg mb-3">
+                <p for="clientInput">Client</p>
+                <nb-select id="clientInput" class="comboBox" [(ngModel)]="client" placeholder="Select All"
+                    (selectedChange)="filterSelected($event, 2)">
+                    <nb-option [value]="null">Select All</nb-option>
+                    <nb-option *ngFor="let c of clientArray" [value]="c">{{c}}</nb-option>
+                </nb-select>
+            </div>
+            <div class="col-md-6 col-sm-6 col-lg mb-3">
+                <p for="campaignInput">Campaign</p>
+                <nb-select id="campaignInput" class="comboBox" [(ngModel)]="campaign" placeholder="Select All"
+                    (selectedChange)="filterSelected($event,3)">
+                    <nb-option [value]="null">Select All</nb-option>
+                    <nb-option *ngFor="let c of campaignArray" [value]="c">{{c}}</nb-option>
+                </nb-select>
+            </div>
+        </div>
+    </nb-card-header>
+</nb-card> -->
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <nb-card>
+            <nb-card-header>
+                <div class="row">
+                    <div class="col-md-12 col-lg-6">
+                        Revenue
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-6">
+                        <p style="font-size: 0.75rem; line-height: 2rem; color:#8f9bb3; margin-bottom: 0px;">
+                            Financials revenue
+                        </p>
+                    </div>
+                </div>
+                <!-- <div class="row d-flex justify-content-center">
+                    <div class="col-md-12 col-lg-4 mt-1 alinear">
+                        <p class="mb-0">Market</p>
+                        <nb-select id="marketInput" class="comboBox" size="tiny" [(ngModel)]="market"
+                            placeholder="Market" (selectedChange)="filterSelected($event, 1)">
+                            <nb-option [value]="null">Select All</nb-option>
+                            <nb-option *ngFor="let m of marketArray" [value]="m">{{m}}</nb-option>
+                        </nb-select>
+                    </div>
+                    <div class="col-md-12 col-lg-4 my-1 alinear">
+                        <p class="mb-0">Client</p>
+                        <nb-select id="clientInput" class="comboBox" size="tiny" [(ngModel)]="client"
+                            placeholder="Client" (selectedChange)="filterSelected($event, 2)">
+                            <nb-option [value]="null">Select All</nb-option>
+                            <nb-option *ngFor="let c of clientArray" [value]="c">{{c}}</nb-option>
+                        </nb-select>
+                    </div>
+                    <div class="col-md-12 col-lg-4 my-1 alinear">
+                        <p class="mb-0">Campaign</p>
+                        <nb-select id="campaignInput" class="comboBox" size="tiny" [(ngModel)]="campaign"
+                            placeholder="Campaign" (selectedChange)="filterSelected($event,3)">
+                            <nb-option [value]="null">Select All</nb-option>
+                            <nb-option *ngFor="let c of campaignArray" [value]="c">{{c}}</nb-option>
+                        </nb-select>
+                    </div>
+                </div> -->
+            </nb-card-header>
+            <div class="summary-container">
+                <div class="coins-container">
+                    <div class="h6">{{totalValue | number : '.0-0'}}</div>
+                    <div style="font-weight: 100">Net Revenue Actual</div>
+                    <div class="h6">{{month}}</div>
+                    <div style="font-weight: 100">Month</div>
+                </div>
+                <div class="coins-container">
+                    <div class="h6">{{coin}}</div>
+                    <div style="font-weight: 100">Currency</div>
+                </div>
+                <div class="coins-container">
+                    <h6>{{trmAct | number: '.2-2'}}</h6>
+                    <div style="font-weight: 100">TRM ACT</div>
+                </div>
+                <div class="coins-container">
+                    <h6>{{trmOb | number: '.2-2'}}</h6>
+                    <div style="font-weight: 100">TRM OB</div>
+                </div>
+                <div class="coins-container">
+                </div>
+                <div class="slide-out-container fondoSlide" [class.expanded]="showVisitorsStatistics"
+                    [class.collapsed]="!showVisitorsStatistics">
+                    <div class="content-wrapper">
+                        <div class="visitors-statistics">
+                            <div class="statistics-chart">
+                                <div class="content-wrapper">
+                                    <div echarts [options]="optionsWrapperGraph" class="echart">
+                                    </div>
+                                    <!-- <chart type="horizontalBar" [data]="data" [options]="options"></chart> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <nb-icon [icon]="showVisitorsStatistics ? 'arrow-forward-outline' : 'arrow-back-outline'" pack="eva"
+                    class="show-hide-toggle" (click)="toggleStatistics()">
+                </nb-icon>
+            </div>
+        </nb-card>
+    </div>
+</div>
+
+<!-- <nb-card accent="info">
+    <nb-card-body>
+        <div class="row">
+            <div class="col-md-3 text-center col-sm-12 col-lg-2 my-auto" [nbSpinner]="spinnerText"
+                nbSpinnerStatus="primary">
+                <h4>{{totalValue | number : '.2-2'}}</h4>
+                <p>Net Revenue Actual</p>
+                <h4>{{month}}</h4>
+                <p>Month</p>
+            </div>
+            <div class="col-md-3 text-center col-sm-12 col-lg-2 my-auto" [nbSpinner]="spinnerCoin"
+                nbSpinnerStatus="primary">
+                <h4>{{coin}}</h4>
+                <p>Currency</p>
+            </div>
+            <div class="col-md-3 text-center col-sm-12 col-lg-2 my-auto" [nbSpinner]="spinnerText"
+                nbSpinnerStatus="primary">
+                <h4>{{trmAct | number : '.2-2'}}</h4>
+                <p>TRM ACT</p>
+            </div>
+            <div class="col-md-3 text-center col-sm-12 col-lg-2 my-auto" [nbSpinner]="spinnerText"
+                nbSpinnerStatus="primary">
+                <h4>{{trmOb | number : '.2-2'}}</h4>
+                <p>TRM OB</p>
+            </div>
+
+            <div id="barHor" class="col-lg-4" [nbSpinner]="spinnerTable" nbSpinnerStatus="primary">
+                <apx-chart [series]="chartOptionsBarHor.series" [chart]="chartOptionsBarHor.chart"
+                    [dataLabels]="chartOptionsBarHor.dataLabels" [plotOptions]="chartOptionsBarHor.plotOptions"
+                    [xaxis]="chartOptionsBarHor.xaxis" [yaxis]="chartOptionsBarHor.yaxis"
+                    [title]="chartOptionsBarHor.title" [stroke]="chartOptionsBarHor.stroke"
+                    [colors]="chartOptionsBarHor.colors"></apx-chart>
+            </div>
+            <div class="col-lg-4" style="display: block" [nbSpinner]="spinnerTable" nbSpinnerStatus="primary">
+                <canvas baseChart [datasets]="barChartDataHor" [labels]="barChartLabelsHor"
+                    [options]="barChartOptionsHor" [legend]="barChartLegend" [chartType]="barChartTypeHor">
+                </canvas>
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card> -->
+
+
+
+
+
+<!-- <nb-card class="row">
+    <nb-card-body class="p-0">
+        <img src="assets/Banner-06.png" alt="" class="stylePhoto">
+    </nb-card-body>
+</nb-card> -->
+
+<!-- <app-banner [name]="'Banner-06.png'"></app-banner> -->
+
+
+
+<!-- <div class="row">
+    <p class="msg mx-auto"><strong>Please select a filter to view the graphs</strong> </p>
+    <nb-card class="chart-container mx-auto col-lg p-0" [ngClass]="labelArrayCon.length > 20 ? 'col-lg-12 mb-5' : 'col-lg'"
+        [nbSpinner]="spinnerConcep" nbSpinnerStatus="primary" status="primary">
+        <nb-card-header> REVENUE</nb-card-header>
+        <nb-card-body>
+            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+                [legend]="barChartLegend" [chartType]="barChartType">
+            </canvas>
+        </nb-card-body>
+    </nb-card>
+    <nb-card class="chart-container mx-auto col-lg p-0" [ngClass]="labelArrayVol.length > 20 ? 'col-lg-12' : 'col-lg'"
+        [nbSpinner]="spinnerVol" nbSpinnerStatus="primary" status="info">
+        <nb-card-header>VOLUME</nb-card-header>
+        <nb-card-body>
+            <canvas baseChart [datasets]="barChartDataVol" [labels]="barChartLabelsVol" [options]="barChartOptionsVol"
+                [legend]="barChartLegend" [chartType]="barChartType">
+            </canvas>
+        </nb-card-body>
+    </nb-card>
+</div> -->
+
+<div class="row ">
+    <div class="col-md-12 col-lg-12">
+        <nb-card [nbSpinner]="spinnerConcep" nbSpinnerStatus="primary" class="settingsCardDown" id="cardOne"
+            class="heightDiv">
+            <nb-card-header>
+                REVENUE & VOLUME
+                <nb-search type="rotate-layout" tag="rotate-layout" class="search" ></nb-search>
+            </nb-card-header>
+            <nb-card-body *ngIf="Listflipped">
+                <div style="display: flex;">
+                    <h4>Revenue</h4>
+                    <button nbButton ghost (click)="generateXlxs(1)" size="small">
+                        <nb-icon icon="download-outline"></nb-icon>
+                    </button>
+                </div>
+                <p style="font-size: 0.75rem; line-height: 2rem; color:#8f9bb3; margin-bottom: 0px;">Here you can find
+                    the revenue information</p>
+                <table id="tablaCon" class="table table-striped" scrollX="true">
+                    <thead>
+                        <tr>
+                            <th scope="col">INDICATOR</th>
+                            <th scope="col">ACTUAL</th>
+                            <th scope="col">OB</th>
+                            <th scope="col">RFT</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            *ngFor="let data of tableDataRevenue | paginate: { id: 'paginationRevenue', itemsPerPage: 10, currentPage: p }">
+                            <th scope="row">{{ data.indicator }}</th>
+                            <td> {{ data.actual | number: '.2-2' }} </td>
+                            <td>
+                                <nb-icon
+                                    icon="{{data.ob > data.actual ? 'close-circle-outline' : data.ob == data.actual ? 'alert-circle-outline' : 'checkmark-circle-2-outline'}}"
+                                    status="{{data.ob > data.actual ? 'danger' : data.ob == data.actual ? 'warning' : 'success'}}">
+                                </nb-icon>
+                                {{ data.ob | number: '.2-2' }}
+                            </td>
+                            <td>
+                                <nb-icon
+                                    icon="{{data.rft > data.actual ? 'close-circle-outline' : data.rft == data.actual ? 'alert-circle-outline' : 'checkmark-circle-2-outline'}}"
+                                    status="{{data.rft > data.actual ? 'danger' : data.rft == data.actual ? 'warning' : 'success'}}">
+                                </nb-icon>
+                                {{ data.rft | number: '.2-2' }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="text-center">
+                    <pagination-controls id="paginationRevenue" (pageChange)="p = $event"></pagination-controls>
+                </div>
+                <div style="display: flex;">
+                    <h4>Volume</h4>
+                    <button nbButton ghost (click)="generateXlxs(2)" size="small">
+                        <nb-icon icon="download-outline"></nb-icon>
+                    </button>
+                </div>
+                <p style="font-size: 0.75rem; line-height: 2rem; color:#8f9bb3; margin-bottom: 0px;">Here you can find
+                    the volume information</p>
+                <table id="tablaVol" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">INDICATOR</th>
+                            <th scope="col">ACTUAL</th>
+                            <th scope="col">OB</th>
+                            <th scope="col">RFT</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            *ngFor="let data of tableDataVolume | paginate : { id: 'paginationVolume',itemsPerPage: 10, currentPage: e }">
+                            <th scope="row">{{ data.indicator }}</th>
+                            <td> {{ data.actual | number: '.2-2' }} </td>
+                            <td>
+                                <nb-icon
+                                    icon="{{data.ob > data.actual ? 'close-circle-outline' : data.ob == data.actual ? 'alert-circle-outline' : 'checkmark-circle-2-outline'}}"
+                                    status="{{data.ob > data.actual ? 'danger' : data.ob == data.actual ? 'warning' : 'success'}}">
+                                </nb-icon>
+                                {{ data.ob | number: '.2-2' }}
+                            </td>
+                            <td>
+                                <nb-icon
+                                    icon="{{data.rft > data.actual ? 'close-circle-outline' : data.rft == data.actual ? 'alert-circle-outline' : 'checkmark-circle-2-outline'}}"
+                                    status="{{data.rft > data.actual ? 'danger' : data.rft == data.actual ? 'warning' : 'success'}}">
+                                </nb-icon>
+                                {{ data.rft | number: '.2-2' }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="text-center">
+                    <pagination-controls id="paginationVolume" (pageChange)="e = $event"></pagination-controls>
+                </div>
+            </nb-card-body>
+            <nb-icon icon="refresh-outline" (click)="cleanFilter()" class="flip-icon positionIconRefresh"></nb-icon>
+            <nb-icon icon="arrowhead-down-outline" pack="eva" class="flip-icon positionIcon" (click)="toggleView()"
+                *ngIf="!Listflipped">
+            </nb-icon>
+            <nb-icon icon="arrowhead-up-outline" pack="eva" class="flip-icon positionIcon" (click)="toggleView()"
+                *ngIf="Listflipped">
+            </nb-icon>
+            <button nbButton hero status="info" (click)="generateReport()" class=" positionBoton flip-icon add-filter" shape="round"
+            size="small"><nb-icon icon="message-square-outline" style="color: white;"></nb-icon>
+            </button>
+        </nb-card>
+    </div>
+    <div id="scrollTabla"></div>
+    <!-- <div class="col-md-12 col-lg-6">
+        <nb-card [nbSpinner]="spinnerVol" nbSpinnerStatus="primary" class="heightDiv" size="large" status="danger" id="cardTow">
+            <nb-card-header>
+                VOLUME
+                <button nbButton ghost (click)="generateXlxs(2)" size="small">
+                    <nb-icon icon="download-outline" style="color: white;"></nb-icon>
+                </button>
+                <nb-search type="rotate-layout" tag="rotate-layout"></nb-search>
+            </nb-card-header>
+            <nb-card-body *ngIf="Listflipped">
+                <table id="tablaVol" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">INDICATOR</th>
+                            <th scope="col">ACTUAL</th>
+                            <th scope="col">OB</th>
+                            <th scope="col">RFT</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of tableDataVolume | paginate : { itemsPerPage: 10, currentPage: e }">
+                            <th scope="row">{{ data.indicator }}</th>
+                            <td> {{ data.actual | number: '.2-2' }} </td>
+                            <td>{{ data.ob | number: '.2-2' }}
+                                <nb-icon
+                                    icon="{{data.ob > data.actual ? 'close-circle-outline' : data.ob == data.actual ? 'alert-circle-outline' : 'checkmark-circle-2-outline'}}"
+                                    status="{{data.ob > data.actual ? 'danger' : data.ob == data.actual ? 'warning' : 'success'}}">
+                                </nb-icon>
+                            </td>
+                            <td>{{ data.rft | number: '.2-2' }}
+                                <nb-icon
+                                    icon="{{data.rft > data.actual ? 'close-circle-outline' : data.rft == data.actual ? 'alert-circle-outline' : 'checkmark-circle-2-outline'}}"
+                                    status="{{data.rft > data.actual ? 'danger' : data.rft == data.actual ? 'warning' : 'success'}}">
+                                </nb-icon>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <pagination-controls (pageChange)="e = $event"></pagination-controls>
+            </nb-card-body>
+            <nb-icon icon="grid-outline" pack="eva" class="flip-icon positionIcon" (click)="toggleViewTow()">
+            </nb-icon>
+        </nb-card>
+    </div> -->
+</div>

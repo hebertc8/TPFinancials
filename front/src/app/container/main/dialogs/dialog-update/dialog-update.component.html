@@ -1,0 +1,29 @@
+<nb-card [nbSpinner]="load" nbSpinnerStatus="primary">
+    <nb-card-header>
+        {{requetType[processNumber]}} the info
+    </nb-card-header>
+<nb-card-body >
+<form aria-labelledby="title" [formGroup]="form" class="form" *ngIf="processNumber !== 3, else delete">
+    <label for="central" class="label">Central</label>
+    <input nbInput id="central" [placeholder]="placeholder.central" formControlName="central">
+    <label for="mercado" class="label">Mercado</label>
+    <input nbInput id="mercado" [placeholder]="placeholder.mercado" formControlName="mercado">
+    <label for="pais" class="label">País</label>
+    <input nbInput id="pais" [placeholder]="placeholder.pais" formControlName="pais">
+
+    <div class="d-flex justify-content-around buttonSection">
+        <button class="button" nbButton status="primary" [disabled]="form.invalid" (click)="update()">{{requetType[processNumber]}}</button><button class="button" status="basic" nbButton (click)="close(0)">Cancel</button>
+    </div>
+</form>
+
+<ng-template #delete>
+    <div>
+        <div class="d-flex justify-content-around buttonSection">
+            <button class="button" nbButton status="primary" (click)="update()">{{requetType[processNumber]}}</button><button class="button" status="basic" nbButton (click)="close(0)">Cancel</button>
+        </div>
+    </div>
+  </ng-template>
+
+
+</nb-card-body>
+</nb-card>

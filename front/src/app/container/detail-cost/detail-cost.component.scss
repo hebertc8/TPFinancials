@@ -1,0 +1,124 @@
+
+@import '../../nebular/@theme/styles/themes';
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/breakpoints';
+
+@include nb-install-component() {
+  .summary-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1;
+    background-color: nb-theme(background-basic-color-2);
+    justify-content: center;
+    padding: 1rem 3rem 1rem;
+    border: 1px solid nb-theme(border-basic-color-3);
+    border-left: none;
+    border-right: none;
+    margin-left: -23px;
+    margin-right: -24px;
+  }
+}
+
+.coins-container{
+  text-align: center;
+  margin: 10px 50px;
+}
+
+.echart {
+  display: block;
+  height: 90%;
+  width: 100%;
+}
+
+.colorTables{
+  background:#8f9bb31c;
+}
+
+.stylePhoto{
+width: 100%;
+position: relative;
+//  margin-left: 16px;
+}
+
+.alinear{
+  text-align: center;
+}
+
+.colorGraphics{
+background:white;
+}
+
+
+.table{
+  overflow-x: auto;
+}
+
+.thead, .tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed; 
+}
+.grid {
+  table-layout: auto !important;
+}
+
+.chart-container {
+  position: relative;
+  margin-bottom: 10%;
+  height: 40vh;
+  min-height: 10vh;
+}
+
+
+h4 {
+font-size: 1.325rem;
+}
+
+tr {
+font-size: 0.7125rem !important;
+}
+
+p {
+font-size: 0.8125rem !important;
+}
+
+@media only screen and (min-width: 100px) and (max-width: 768px) {
+
+}
+@media only screen and (min-width: 100px) and (max-width: 992px) {
+.trm {
+   text-align: center;
+}
+
+.positionBoton{
+  margin-top: -50px !important;
+  margin-right: 12px !important;
+}
+
+.positionBotonCPH{
+  margin-right: -2px !important;
+  margin-top: -42px !important;
+}
+
+}
+
+.positionIcon{
+  margin-top: 10px;
+  margin-right: 53px;
+  // color: #020962;
+}
+
+.positionBotonAcc{
+  margin-top: 5px;
+  margin-right: 15px;
+}
+
+.positionBoton{
+  margin-top: -14px;
+  margin-right: 12px;
+}
+
+.positionBotonCPH{
+  margin-right: -2px;
+  margin-top: -14px;
+}

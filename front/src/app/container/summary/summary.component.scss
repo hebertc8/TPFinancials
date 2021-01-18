@@ -1,0 +1,121 @@
+:host ::ng-deep {
+   .List {
+
+        th {
+            // padding: unset !important;
+            text-align: center;
+            a {
+                font-weight: bold;
+           }
+        }
+
+        td {
+          
+           background: #ffffff;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+      // tbody {
+      //     tr td {
+      //        padding: 0.2rem 0.6rem;
+      //     }
+      // }
+  }
+}
+
+.thead, .tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed; 
+}
+
+.demo-chart {
+  height: 300px;
+}
+
+.colorTables{
+    background:#a1a1a725;
+}
+
+.stylePhoto{
+  width: 98%;
+  position: relative;
+  margin-left: 16px;
+}
+
+.heightDiv{
+  height: 150px;
+}
+
+.colorGraphics{
+  background:white;
+}
+
+.chart-container {
+    position: relative;
+    margin-bottom: 10%;
+    height: 40vh;
+    min-height: 10vh;
+  }
+
+.trm {
+  text-align: start;
+}
+.row {
+  margin-right: 0%;
+}
+
+
+
+.btnDown {
+}
+
+  @media only screen and (min-width: 100px) and (max-width: 768px) {
+    .stylePhoto{
+      width: 95.5%;
+    }   
+    .btnDown {
+      text-align: center;
+    }
+  }
+  
+  @media only screen and (min-width: 100px) and (max-width: 992px) {
+    .trm {
+      text-align: center;
+    }
+    #chart {
+      margin-right: auto;
+    }
+  }
+
+  h4 {
+    font-size: 1.325rem;
+  }
+  
+  tr {
+    font-size: 0.8125rem !important;
+  }
+  
+  p {
+    font-size: 0.8125rem !important;
+  }
+
+  #chart {
+    padding: 0;
+    max-width: 450px;
+    padding: 0;
+    margin-right: -60px;
+    padding-left: 10px;
+  }
+  
+  .apexcharts-legend text {
+    font-weight: 900;
+  }
+
+  
+  #bar {
+    max-width: 500px;
+    // max-height: ;
+    // margin: 35px auto;
+  }

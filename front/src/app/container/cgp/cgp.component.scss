@@ -1,0 +1,63 @@
+@import '../../nebular/@theme/styles/themes';
+
+.stylePhoto{
+  width: 100%;
+  position: relative;
+  // margin-left: 16px;
+}
+
+// #bar {
+//   max-width: 500px;
+//   margin: 35px auto;
+// }
+
+// #barVariation {
+//   max-width: 500px;
+//   margin: 35px auto;
+// }
+.echart {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+@media only screen and (min-width: 100px) and (max-width: 768px) {
+  .stylePhoto{
+      // width: 95.5%;
+    }
+}
+
+.settingsCardDown{
+  overflow:auto;
+}
+
+.table{
+  overflow-x: auto;
+}
+
+h4 {
+  font-size: 1.325rem;
+}
+
+tr {
+  font-size: 0.8125rem !important;
+}
+
+p {
+  font-size: 0.8125rem !important;
+}
+
+@include nb-install-component() {
+  .toggle-icon {
+    position: absolute;
+    top: 1rem;
+    right: 1.25rem;
+    @include nb-rtl(right, auto);
+    @include nb-rtl(left, 1.25rem);
+    cursor: pointer;
+  }
+}
+
+.tamanoCard{
+  height: 400px !important;
+}
